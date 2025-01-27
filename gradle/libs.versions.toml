@@ -2,7 +2,54 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-guava = "33.3.1-jre"
+spring-framework = "6.2.2"
 
 [libraries]
-guava = { module = "com.google.guava:guava", version.ref = "guava" }
+spring-aop = { group = "org.springframework", name = "spring-aop", version.ref = "spring-framework"}
+spring-aspects = { group = "org.springframework", name = "spring-aspects", version.ref = "spring-framework"}
+spring-beans = { group = "org.springframework", name = "spring-beans", version.ref = "spring-framework"}
+spring-context = { group = "org.springframework", name = "spring-context", version.ref = "spring-framework"}
+spring-context-indexer = { group = "org.springframework", name = "spring-context-indexer", version.ref = "spring-framework"}
+spring-context-support = { group = "org.springframework", name = "spring-context-support", version.ref = "spring-framework"}
+spring-core = { group = "org.springframework", name = "spring-core", version.ref = "spring-framework"}
+spring-core-test = { group = "org.springframework", name = "spring-core-test", version.ref = "spring-framework"}
+spring-expression = { group = "org.springframework", name = "spring-expression", version.ref = "spring-framework"}
+spring-instrument = { group = "org.springframework", name = "spring-instrument", version.ref = "spring-framework"}
+spring-jcl = { group = "org.springframework", name = "spring-jcl", version.ref = "spring-framework"}
+spring-jdbc = { group = "org.springframework", name = "spring-jdbc", version.ref = "spring-framework"}
+spring-jms = { group = "org.springframework", name = "spring-jms", version.ref = "spring-framework"}
+spring-messaging = { group = "org.springframework", name = "spring-messaging", version.ref = "spring-framework"}
+spring-orm = { group = "org.springframework", name = "spring-orm", version.ref = "spring-framework"}
+spring-oxm = { group = "org.springframework", name = "spring-oxm", version.ref = "spring-framework"}
+spring-r2dbc = { group = "org.springframework", name = "spring-r2dbc", version.ref = "spring-framework"}
+spring-test = { group = "org.springframework", name = "spring-test", version.ref = "spring-framework"}
+spring-tx = { group = "org.springframework", name = "spring-tx", version.ref = "spring-framework"}
+spring-web = { group = "org.springframework", name = "spring-web", version.ref = "spring-framework"}
+spring-webflux = { group = "org.springframework", name = "spring-webflux", version.ref = "spring-framework"}
+spring-webmvc = { group = "org.springframework", name = "spring-webmvc", version.ref = "spring-framework"}
+spring-websocket = { group = "org.springframework", name = "spring-websocket", version.ref = "spring-framework"}
+
+[bundles]
+spring = ["spring-aop",
+    "spring-aspects",
+    "spring-beans",
+    "spring-context",
+    "spring-context-indexer",
+    "spring-context-support",
+    "spring-core",
+    "spring-core-test",
+    "spring-expression",
+    "spring-instrument",
+    "spring-jcl",
+    "spring-jdbc",
+    "spring-jms",
+    "spring-messaging",
+    "spring-orm",
+    "spring-oxm",
+    "spring-r2dbc",
+    "spring-test",
+    "spring-tx",
+    "spring-web",
+    "spring-webflux",
+    "spring-webmvc",
+    "spring-websocket"]
