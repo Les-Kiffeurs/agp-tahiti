@@ -8,8 +8,8 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
     idea
+    war
 }
 
 repositories {
@@ -19,6 +19,9 @@ repositories {
 
 dependencies {
     // This dependency is used by the application.
+    implementation(libs.lucene)
+    implementation(libs.postgres)
+    implementation(libs.bundles.spring)
 }
 
 testing {
@@ -36,9 +39,4 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = "fr.cyu.depinfo.agp.tahiti.AppTest"
 }
