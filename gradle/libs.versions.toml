@@ -2,9 +2,13 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
+lucene = "10.1.0"
+postgres = "42.7.5"
 spring-framework = "6.2.2"
 
 [libraries]
+lucene = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
+postgres = { group = "org.postgresql", name = "postgresql", version.ref = "postgres" }
 spring-aop = { group = "org.springframework", name = "spring-aop", version.ref = "spring-framework"}
 spring-aspects = { group = "org.springframework", name = "spring-aspects", version.ref = "spring-framework"}
 spring-beans = { group = "org.springframework", name = "spring-beans", version.ref = "spring-framework"}

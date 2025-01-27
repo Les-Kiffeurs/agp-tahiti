@@ -8,8 +8,8 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
     idea
+    war
 }
 
 repositories {
@@ -37,9 +37,4 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = "fr.cyu.depinfo.agp.tahiti.AppTest"
 }
