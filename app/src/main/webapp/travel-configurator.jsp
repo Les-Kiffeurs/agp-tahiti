@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="resources/css/travel-config.css">
 </head>
 <body>
+<a href="index.jsp" class="return-home">Back to Main Menu</a>
 <div class="container">
     <header>
         <h1>Travel Configurator</h1>

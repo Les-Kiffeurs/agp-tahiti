@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="resources/css/simple-search.css">
 </head>
 <body>
+<a href="index.jsp" class="return-home">Back to Main Menu</a>
+
 <div class="container">
     <header>
         <h1>Simple Search</h1>
-        <p>Quickly find hotels or activities by typing a keyword, price range, or comfort level.</p>
+        <p>Find hotels or activities by typing a keyword, price range, or comfort level.</p>
     </header>
 
     <main>
@@ -34,11 +36,11 @@
             <button type="submit">Search</button>
         </form>
 
-        <div class="search-results">
+        <section class="search-results">
             <h2>Results</h2>
-            <p>Search results will be displayed here.</p>
-            <!-- Placeholder for now -->
-        </div>
+            <p>Your search results will appear here.</p>
+            <!-- Placeholder for dynamic results -->
+        </section>
     </main>
 
     <footer>
@@ -47,4 +49,3 @@
 </div>
 </body>
 </html>
-

@@ -8,6 +8,7 @@ body {
     color: #ffffff;
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -27,11 +28,14 @@ p {
 
 .menu {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .menu-item {
     display: inline-block;
-    margin: 15px;
     padding: 15px 30px;
     font-size: 1.25rem;
     color: #ffffff;
@@ -39,9 +43,10 @@ p {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .menu-item:hover {
     background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
 }

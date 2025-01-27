@@ -7,10 +7,10 @@ body {
     background-size: cover;
     color: #ffffff;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    text-align: center; /* Center text alignment */
 }
 
 header {
@@ -44,7 +44,9 @@ label {
     font-size: 1rem;
     margin-bottom: 5px;
     font-weight: bold;
+    text-align: left; /* Align labels to the left */
 }
+
 
 input {
     width: 100%;
@@ -90,4 +92,35 @@ button:hover {
 
 .search-results p {
     font-size: 1rem;
+}
+
+.return-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.return-home:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add spacing between form and results */
+    max-width: 600px; /* Restrict width for better focus */
+    width: 100%;
+    padding: 20px;
 }
