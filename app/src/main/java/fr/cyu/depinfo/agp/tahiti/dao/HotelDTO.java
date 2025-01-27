@@ -9,7 +9,7 @@ public class HotelDTO {
     private String beach;
     private float rating;
     private String address;
-
+    private int islandId;
     public HotelDTO(String address, float rating, String beach, float longitude, float latitude, int pricePerNight, String name, String id) {
         this.address = address;
         this.rating = rating;
@@ -83,5 +83,14 @@ public class HotelDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getIslandId() {
+        return islandId;
+    }
+
+    public HotelDTO setIslandId(int islandId) {
+        this.islandId = islandId;
+        return this;
     }
 }
