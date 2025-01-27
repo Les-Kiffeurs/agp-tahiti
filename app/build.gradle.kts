@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     // This dependency is used by the application.
-    implementation(libs.lucene)
+    implementation(libs.bundles.lucene)
     implementation(libs.postgres)
     implementation(libs.bundles.spring)
 }
