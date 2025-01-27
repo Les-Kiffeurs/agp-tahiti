@@ -10,10 +10,10 @@ public class SiteDTO {
     private float longitude;
     private int intensity;
     private String address;
-    private int note;
+    private int rating;
     private int islandId;
 
-    public SiteDTO(int id, String name, String type, int price, float latitude, float longitude, int intensity, String address, int note) {
+    public SiteDTO(int id, String name, String type, int price, float latitude, float longitude, int intensity, String address, int rating) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -22,7 +22,7 @@ public class SiteDTO {
         this.longitude = longitude;
         this.intensity = intensity;
         this.address = address;
-        this.note = note;
+        this.rating = rating;
     }
 
     public int getId() {
@@ -58,7 +58,7 @@ public class SiteDTO {
     }
 
     public int getNote() {
-        return note;
+        return rating;
     }
 
     public void setId(int id) {
@@ -93,8 +93,8 @@ public class SiteDTO {
         this.address = address;
     }
 
-    public void setNote(int note) {
-        this.note = note;
+    public void setNote(int rating) {
+        this.rating = rating;
     }
 
     public int getIslandId() {
