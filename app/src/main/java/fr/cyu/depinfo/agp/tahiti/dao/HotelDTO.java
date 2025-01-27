@@ -8,10 +8,10 @@ public class HotelDTO {
     private float longitude;
     private String beach;
     private float rating;
-    private float adress;
+    private String address;
 
-    public HotelDTO(float adress, float rating, String beach, float longitude, float latitude, int pricePerNight, String name, String id) {
-        this.adress = adress;
+    public HotelDTO(String address, float rating, String beach, float longitude, float latitude, int pricePerNight, String name, String id) {
+        this.address = address;
         this.rating = rating;
         this.beach = beach;
         this.longitude = longitude;
@@ -49,8 +49,8 @@ public class HotelDTO {
         return rating;
     }
 
-    public float getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
     public void setId(String id) {
@@ -81,7 +81,7 @@ public class HotelDTO {
         this.rating = rating;
     }
 
-    public void setAdress(float adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
