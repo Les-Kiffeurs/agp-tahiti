@@ -7,7 +7,8 @@ postgres = "42.7.5"
 spring-framework = "6.2.2"
 
 [libraries]
-lucene = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
+lucene-core = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
+lucene-queryparser = { group = "org.apache.lucene", name = "lucene-queryparser",  version.ref = "lucene" }
 postgres = { group = "org.postgresql", name = "postgresql", version.ref = "postgres" }
 spring-aop = { group = "org.springframework", name = "spring-aop", version.ref = "spring-framework"}
 spring-aspects = { group = "org.springframework", name = "spring-aspects", version.ref = "spring-framework"}
@@ -57,3 +58,5 @@ spring = ["spring-aop",
     "spring-webflux",
     "spring-webmvc",
     "spring-websocket"]
+lucene = ["lucene-core",
+    "lucene-queryparser"]
