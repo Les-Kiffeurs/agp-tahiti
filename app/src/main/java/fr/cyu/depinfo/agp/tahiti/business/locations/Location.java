@@ -60,4 +60,7 @@ public abstract class Location {
         this.rating = rating;
         return this;
     }
+    public double distanceFrom(Location location) {
+       return this.position.distanceFrom(location.position);
+    }
 }
