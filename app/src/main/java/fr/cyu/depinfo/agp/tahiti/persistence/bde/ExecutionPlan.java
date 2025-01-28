@@ -1,5 +1,9 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 
+import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.OperatorInterface;
+
+import java.util.Map;
+
 public class ExecutionPlan {
     OperatorInterface topOperator;
 
@@ -18,5 +22,9 @@ public class ExecutionPlan {
 
     public void init(){
         topOperator.init();
+    }
+
+    public Map<String, String> next(){
+        return topOperator.next();
     }
 }
