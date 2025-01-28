@@ -23,6 +23,8 @@ dependencies {
     implementation(libs.postgres)
     implementation(libs.mockito)
     implementation(libs.bundles.spring)
+    implementation(libs.bundles.jakarta)
+
 }
 
 testing {

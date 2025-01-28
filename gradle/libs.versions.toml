@@ -5,6 +5,7 @@
 lucene = "10.1.0"
 postgres = "42.7.5"
 spring-framework = "6.2.2"
+jakarta = "10.0.0"
 mockito = "1.10.19"
 
 [libraries]
@@ -35,6 +36,7 @@ spring-web = { group = "org.springframework", name = "spring-web", version.ref =
 spring-webflux = { group = "org.springframework", name = "spring-webflux", version.ref = "spring-framework"}
 spring-webmvc = { group = "org.springframework", name = "spring-webmvc", version.ref = "spring-framework"}
 spring-websocket = { group = "org.springframework", name = "spring-websocket", version.ref = "spring-framework"}
+jakarta-web-api = {group = "jakarta.platform", name = "jakarta.jakartaee-web-api", version.ref = "jakarta"}
 
 [bundles]
 spring = ["spring-aop",
@@ -62,3 +64,4 @@ spring = ["spring-aop",
     "spring-websocket"]
 lucene = ["lucene-core",
     "lucene-queryparser"]
+jakarta = ["jakarta-web-api"]
