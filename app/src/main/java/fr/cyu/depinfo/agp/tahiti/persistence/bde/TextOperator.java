@@ -11,7 +11,7 @@ public class TextOperator extends AbstractFinalOperator{
     }
 
     @Override
-    public void init(String query) {
+    public void init() {
 
     }
 

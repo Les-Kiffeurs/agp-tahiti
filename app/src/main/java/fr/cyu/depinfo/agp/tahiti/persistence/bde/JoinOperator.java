@@ -9,7 +9,7 @@ public class JoinOperator extends AbstractComplexOperator{
     }
 
     @Override
-    public void init(String query) {
+    public void init() {
 
     }
 
