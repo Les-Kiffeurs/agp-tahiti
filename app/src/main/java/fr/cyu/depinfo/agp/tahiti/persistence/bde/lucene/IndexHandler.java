@@ -19,7 +19,7 @@ public class IndexHandler {
 
     public void createIndex(String destPath) {
         try {
-            Path indexPath = FileSystems.getDefault().getPath(destPath);
+            indexPath = FileSystems.getDefault().getPath(destPath);
             File lockFile = new File(indexPath.toFile(), "write.lock");
             if (lockFile.exists()) {
                 lockFile.delete(); // Supprimer le verrou s'il existe
