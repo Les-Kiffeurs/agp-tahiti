@@ -18,10 +18,6 @@ public class LuceneFacade {
         searchHandler = new SearchHandler();
     }
 
-    public Document fetchDocumentById(int docID) {
-        return searchHandler.searchDocById(docID);
-    }
-
     public void setSrcFilePath(String srcFilePath){
         this.srcFilePath = srcFilePath;
     }
