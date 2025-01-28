@@ -2,16 +2,12 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 public class BDeAPI {
 
-    private QueryHandler queryHandler;
-
     public void setTextSearchInfo(String tableName, String key, String path){
-        queryHandler.setTableName(tableName);
-        queryHandler.setKeyColumnName(key);
-        queryHandler.setPathToFiles(path);
-
         createTextIndex();
     }
 
@@ -27,10 +23,9 @@ public class BDeAPI {
     }
 
     public void createTextIndex(){
+        //luceneFacade = LuceneFacade();
+
 
     }
 
-    public QueryResponse query(String query){
-
-    }
 }

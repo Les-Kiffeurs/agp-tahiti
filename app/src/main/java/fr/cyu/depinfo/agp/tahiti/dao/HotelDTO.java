@@ -1,7 +1,7 @@
 package fr.cyu.depinfo.agp.tahiti.dao;
 
 public class HotelDTO {
-    private String id;
+    private int id;
     private String name;
     private int pricePerNight;
     private float latitude;
@@ -10,7 +10,7 @@ public class HotelDTO {
     private float rating;
     private float adress;
 
-    public HotelDTO(float adress, float rating, String beach, float longitude, float latitude, int pricePerNight, String name, String id) {
+    public HotelDTO(float adress, float rating, String beach, float longitude, float latitude, int pricePerNight, String name, int id) {
         this.adress = adress;
         this.rating = rating;
         this.beach = beach;
@@ -21,7 +21,7 @@ public class HotelDTO {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -53,7 +53,7 @@ public class HotelDTO {
         return adress;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
