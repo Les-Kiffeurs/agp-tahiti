@@ -32,6 +32,9 @@ public class SQLOperator extends AbstractFinalOperator{
         int colCount;
 
         try {
+            if(!resultSet.next()){
+                return null;
+            }
             metaData = resultSet.getMetaData();
             colCount = metaData.getColumnCount();
 

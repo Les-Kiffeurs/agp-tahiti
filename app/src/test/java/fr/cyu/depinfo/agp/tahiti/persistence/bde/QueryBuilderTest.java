@@ -28,13 +28,14 @@ class QueryBuilderTest {
 
     @Test
     void testSQLQueryCreation() {
-        String query = "SELECT * FROM users";
+        String query = "SELECT * FROM test_table";
 
         queryBuilder.constructQuery(query);
 
         ExecutionPlan executionPlan = queryBuilder.retrieveExecutionPlan();
 
         assertNotNull(executionPlan);
+        assertTrue(executionPlan.getTopOperator() instanceof SQLOperator);
     }
 
     @Test
