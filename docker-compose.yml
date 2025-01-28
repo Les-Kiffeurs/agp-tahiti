@@ -12,7 +12,7 @@ services:
     networks:
       - postgres-network
     volumes:
-      - ./script_db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./script_db/initTest.sql:/docker-entrypoint-initdb.d/initTest.sql
   
   pgadmin:
     image: dpage/pgadmin4
