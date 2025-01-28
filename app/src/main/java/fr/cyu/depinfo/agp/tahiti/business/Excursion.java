@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 public class Excursion {
-    public static final int MAX_SITES = 3;
+    public static final int MAX_TRIPS = 3;
 
     private final Date date;
     private final Hotel departure;
     private final Hotel destination;
-    private final List<Site> sites = new ArrayList<>();
+    private final List<Trip> trips = new ArrayList<>();
 
     public Excursion(Date date, Hotel departure, Hotel destination) {
         this.date = date;
@@ -34,15 +34,15 @@ public class Excursion {
         return destination;
     }
 
-    public List<Site> getSites() {
-        return sites;
+    public List<Trip> getSites() {
+        return trips;
     }
 
-    public Excursion addSite(Site site) throws ExcursionCannotContainMoreSitesToVisitException {
-        if (sites.size() >= MAX_SITES) {
+    public Excursion addSite(Trip trip) throws ExcursionCannotContainMoreSitesToVisitException {
+        if (trips.size() >= MAX_TRIPS) {
             throw new ExcursionCannotContainMoreSitesToVisitException("Excursion is full");
         }
-        sites.add(site);
+        trips.add(trip);
         return this;
     }
 }
