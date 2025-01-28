@@ -15,17 +15,15 @@ class QueryBuilderTest {
 
     @Test
     void testConstructQuery_SQLQuery() {
-        // Test pour une requête SQL simple
         String query = "SELECT * FROM users";
 
         queryBuilder.constructQuery(query);
 
         ExecutionPlan executionPlan = queryBuilder.retrieveExecutionPlan();
 
-        // Vérification de la validité de l'ExecutionPlan
-        assertNotNull(executionPlan, "L'executionPlan ne doit pas être nul pour une requête SQL simple.");
+        assertNotNull(executionPlan, "The executionPlan can't be null for a simple search");
         assertTrue(executionPlan.getTopOperator() instanceof SQLOperator,
-                "L'opérateur dans l'ExecutionPlan doit être un SQLOperator pour une requête SQL simple.");
+                "The executionPlan isn't SQLOperator for a simple search");
     }
 
     @Test
