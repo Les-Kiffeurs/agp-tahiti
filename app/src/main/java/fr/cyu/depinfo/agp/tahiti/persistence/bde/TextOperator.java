@@ -6,6 +6,10 @@ public class TextOperator extends AbstractFinalOperator{
 
     private TextResults textResults;
 
+    public TextOperator(String query) {
+        super(query);
+    }
+
     @Override
     public void init(String query) {
 

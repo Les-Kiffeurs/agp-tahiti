@@ -3,7 +3,11 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 import java.util.Map;
 
 public class SQLOperator extends AbstractFinalOperator{
-    
+
+    public SQLOperator(String query) {
+        super(query);
+    }
+
     @Override
     public void init(String query) {
 
