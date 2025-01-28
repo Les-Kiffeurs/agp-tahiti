@@ -1,6 +1,5 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene;
 
-import fr.cyu.depinfo.agp.tahiti.persistence.bde.TextResults;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.TopDocs;
 
@@ -35,6 +34,7 @@ public class LuceneFacade {
         }
 
         indexHandler.createIndex(destPath);
+        System.out.println(indexHandler.getIndexPath());
         searchHandler.setIndexPath(indexHandler.getIndexPath());
         indexHandler.addFilesToIndex(srcFilePath);
         indexHandler.closeWriter();
@@ -42,6 +42,10 @@ public class LuceneFacade {
 
     public TopDocs search(String keyword) {
         return searchHandler.search(keyword);
+    }
+
+    public Document fetchDocumentById(int docID) {
+        return searchHandler.searchDocById(docID);
     }
 
 }
