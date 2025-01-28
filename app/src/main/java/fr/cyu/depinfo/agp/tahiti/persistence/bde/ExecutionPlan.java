@@ -15,4 +15,8 @@ public class ExecutionPlan {
         this.topOperator = topOperator;
         return this;
     }
+
+    public void init(){
+        topOperator.init();
+    }
 }

@@ -11,6 +11,10 @@ public abstract class AbstractFinalOperator implements OperatorInterface {
         this.query = query;
     }
 
+    public String getQuery() {
+        return query;
+    }
+
     private Iterator<Map<String, String>> resultIterator;
 
 }

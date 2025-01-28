@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface OperatorInterface {
 
-    void init(String query);
+    void init();
     Map<String, String> next();
 }
