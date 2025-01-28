@@ -1,21 +1,39 @@
--- Script SQL pour initialiser la base de données PostgreSQL
-
--- Étape 1 : Création d'une table pour les tests
-CREATE TABLE test_table (
-                            id SERIAL PRIMARY KEY,
-                            name VARCHAR(100) NOT NULL,
-                            age INT NOT NULL,
-                            email VARCHAR(150),
-                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE Island (
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255) NOT NULL
 );
 
--- Étape 2 : Insertion de 5 lignes de données dans la table
-INSERT INTO test_table (name, age, email) VALUES
-                                              ('Alice', 25, 'alice@example.com'),
-                                              ('Bob', 30, 'bob@example.com'),
-                                              ('Charlie', 22, 'charlie@example.com'),
-                                              ('Diana', 28, 'diana@example.com'),
-                                              ('Eve', 35, 'eve@example.com');
+CREATE TABLE Hotel (
+                       id INT PRIMARY KEY AUTO_INCREMENT,
+                       name VARCHAR(255) NOT NULL,
+                       pricePerNight INT NOT NULL,
+                       latitude FLOAT NOT NULL,
+                       longitude FLOAT NOT NULL,
+                       beach VARCHAR(255),
+                       rating FLOAT,
+                       address VARCHAR(255) NOT NULL,
+                       islandId INT,
+                       FOREIGN KEY (islandId) REFERENCES Island(id)
+);
 
--- Étape 3 : Vérification des données insérées
-SELECT * FROM test_table;
+CREATE TABLE Site (
+                      id INT PRIMARY KEY AUTO_INCREMENT,
+                      name VARCHAR(255) NOT NULL,
+                      type VARCHAR(255) NOT NULL,
+                      price INT NOT NULL,
+                      latitude FLOAT NOT NULL,
+                      longitude FLOAT NOT NULL,
+                      intensity INT,
+                      address VARCHAR(255) NOT NULL,
+                      rating INT,
+                      islandId INT,
+                      FOREIGN KEY (islandId) REFERENCES Island(id)
+);
+
+
+INSERT INTO Site (name, type, price, latitude, longitude, intensity, address, rating, islandId) VALUES
+                                                                                                    ('Les 3 Cascades de Faarumai', 'Natural Waterfall', 50, -17.5391, -149.4307, 5, 'Tiarei, Tahiti', 5, ISLAND_ID_VALUE),
+                                                                                                    ('Rainbow Park', 'Animal Park & Adventure', 1500, -17.5466, -149.5517, 2, 'Pirae, Tahiti', 4, ISLAND_ID_VALUE),
+                                                                                                    ('Algotherm Spa', 'Spa', 5000, -17.5586, -149.6137, 3, 'InterContinental Tahiti Resort & Spa', 5, ISLAND_ID_VALUE),
+                                                                                                    ('L\'Aquarium aux épaves', 'Diving Site', 5000, -17.5595, -149.6062, 3, 'Faa\'a, Tahiti', 5, ISLAND_ID_VALUE),
+                                                                                                    ('Atioropa’a', 'Public Garden', 50, -17.5312, -149.4776, 1, 'Location not provided', 3, ISLAND_ID_VALUE);
