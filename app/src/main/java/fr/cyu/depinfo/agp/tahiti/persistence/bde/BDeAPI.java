@@ -1,5 +1,7 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 
+import fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.LuceneFacade;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -7,8 +9,12 @@ import java.nio.file.Path;
 
 public class BDeAPI {
 
+    private LuceneFacade luceneFacade;
+    private QueryBuilder queryBuilder;
+
     public void setTextSearchInfo(String tableName, String key, String path){
-        createTextIndex();
+        luceneFacade.setSrcFilePath(path);
+        queryBuilder.setInfoTextSearch(tableName, key);
     }
 
     public void addDescription(String text, String key, String path){
@@ -22,10 +28,8 @@ public class BDeAPI {
         }
     }
 
-    public void createTextIndex(){
-        //luceneFacade = LuceneFacade();
-
-
+    public void createTextIndex(String destPath){
+        luceneFacade.createIndex(destPath);
     }
 
 }

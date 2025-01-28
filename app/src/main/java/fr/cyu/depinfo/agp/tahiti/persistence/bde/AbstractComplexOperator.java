@@ -5,6 +5,11 @@ public abstract class AbstractComplexOperator implements OperatorInterface{
     private OperatorInterface leftOperator;
     private OperatorInterface rightOperator;
 
+    public AbstractComplexOperator(OperatorInterface leftOperator, OperatorInterface rightOperator) {
+        this.leftOperator = leftOperator;
+        this.rightOperator = rightOperator;
+    }
+
     public OperatorInterface getRightOperator() {
         return rightOperator;
     }

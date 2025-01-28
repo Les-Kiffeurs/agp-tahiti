@@ -4,6 +4,10 @@ import java.util.Map;
 
 public class JoinOperator extends AbstractComplexOperator{
 
+    public JoinOperator(OperatorInterface leftOperator, OperatorInterface rightOperator) {
+        super(leftOperator, rightOperator);
+    }
+
     @Override
     public void init(String query) {
 
