@@ -1,4 +1,4 @@
-package fr.cyu.depinfo.agp.tahiti.persistence.bde;
+package fr.cyu.depinfo.agp.tahiti.persistence.bde.operators;
 
 import java.util.Map;
 

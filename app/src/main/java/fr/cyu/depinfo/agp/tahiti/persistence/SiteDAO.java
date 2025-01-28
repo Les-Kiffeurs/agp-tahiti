@@ -4,30 +4,31 @@ import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SiteDAO implements SiteDAOInterface {
     @Override
-    public List<HashMap<String, String>> searchByPrice(int minPrice, int maxPrice) {
+    public List<Map<String, String>> searchByPrice(int minPrice, int maxPrice) {
         return List.of();
     }
 
     @Override
-    public List<HashMap<String, String>> searchByConfort(int confortLevel) {
+    public List<Map<String, String>> searchByConfort(int confortLevel) {
         return List.of();
     }
 
     @Override
-    public List<HashMap<String, String>> searchByKeyword(String keyword) {
+    public List<Map<String, String>> searchByKeyword(String keyword) {
         return List.of();
     }
 
     @Override
-    public List<HashMap<String, String>> searchByType(String type) {
+    public List<Map<String, String>> searchByType(String type) {
         return List.of();
     }
 
     @Override
-    public List<HashMap<String, String>> searchByIsland(String island) {
+    public List<Map<String, String>> searchByIsland(String island) {
         return List.of();
     }
 }

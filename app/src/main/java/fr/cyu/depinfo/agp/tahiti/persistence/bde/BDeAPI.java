@@ -9,8 +9,10 @@ import java.nio.file.Path;
 
 public class BDeAPI {
 
-    private LuceneFacade luceneFacade;
-    private QueryBuilder queryBuilder;
+    private LuceneFacade luceneFacade = new LuceneFacade();
+    private QueryBuilder queryBuilder = new QueryBuilder();
+
+    public BDeAPI() {}
 
     public void setTextSearchInfo(String tableName, String key, String path){
         luceneFacade.setSrcFilePath(path);
@@ -30,6 +32,11 @@ public class BDeAPI {
 
     public void createTextIndex(String destPath){
         luceneFacade.createIndex(destPath);
+    }
+
+    public ExecutionPlan query(String query){
+        queryBuilder.constructQuery(query);
+        return queryBuilder.retrieveExecutionPlan();
     }
 
 }

@@ -1,7 +1,10 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 
+import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.SQLOperator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,6 +39,16 @@ class QueryBuilderTest {
 
         assertNotNull(executionPlan);
         assertTrue(executionPlan.getTopOperator() instanceof SQLOperator);
+
+        executionPlan.init();
+
+        Map<String, String> result = executionPlan.next();
+
+        assertNotNull(result);
+        assertTrue(result.containsKey("name"));
+        assertTrue(result.containsKey("email"));
+        assertTrue(result.containsKey("age"));
+        System.out.println(result);
     }
 
     @Test

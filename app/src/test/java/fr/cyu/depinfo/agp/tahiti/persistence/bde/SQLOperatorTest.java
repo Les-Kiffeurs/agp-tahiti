@@ -1,5 +1,6 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 
+import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.SQLOperator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

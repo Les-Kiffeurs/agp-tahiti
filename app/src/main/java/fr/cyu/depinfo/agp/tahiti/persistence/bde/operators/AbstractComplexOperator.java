@@ -1,4 +1,4 @@
-package fr.cyu.depinfo.agp.tahiti.persistence.bde;
+package fr.cyu.depinfo.agp.tahiti.persistence.bde.operators;
 
 public abstract class AbstractComplexOperator implements OperatorInterface{
 
