@@ -20,7 +20,7 @@ public class HotelDAO implements HotelDAOInterface {
     @Override
     public List<Map<String, String>> searchByPrice(int minPrice, int maxPrice) {
 
-        String query = String.format("SELECT * FROM hotel WHERE price >= %d AND price <= %d", minPrice, maxPrice);
+        String query = String.format("SELECT * FROM hotel WHERE pricePerNight >= %d AND pricePerNight <= %d", minPrice, maxPrice);
 
         ExecutionPlan executionPlan = bdeAPI.query(query);
 
