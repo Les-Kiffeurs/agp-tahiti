@@ -6,6 +6,7 @@ import java.nio.file.*;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
@@ -17,15 +18,18 @@ public class SearchHandler {
     private static final int MAX_RESULTS = 100;
     private Path indexPath;
 
+    private IndexSearcher searcher;
+    private DirectoryReader ireader;
+
     public SearchHandler() {}
 
     public TopDocs search(String query) {
         TopDocs resultats;
         try {
             Directory index = FSDirectory.open(indexPath);
-            DirectoryReader ireader = DirectoryReader.open(index);
+            ireader = DirectoryReader.open(index);
 
-            IndexSearcher searcher = new IndexSearcher(ireader);
+            searcher = new IndexSearcher(ireader);
 
             Analyzer analyseur = new StandardAnalyzer();
 
@@ -39,8 +43,31 @@ public class SearchHandler {
         return resultats;
     }
 
-    public SearchHandler setIndexPath(Path indexPath) {
-        this.indexPath = indexPath;
-        return this;
+    public void closeReader() {
+        try {
+            ireader.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
+
+    public Document searchDocById(int docId) {
+        StoredFields storedFields;
+        Document doc = null;
+        try {
+            storedFields = searcher.storedFields();
+            doc = storedFields.document(docId);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return doc;
+    }
+
+    public void setIndexPath(Path indexPath) {
+        this.indexPath = indexPath;
+    }
+
 }
