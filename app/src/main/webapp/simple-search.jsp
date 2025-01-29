@@ -5,6 +5,9 @@
   Time: 14:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:useBean id="entriesBean" class="fr.cyu.depinfo.agp.tahiti.beans.EntriesBeans" scope="session" />
+<jsp:setProperty name="entriesBean" property="*" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Search</title>
     <link rel="stylesheet" href="resources/css/simple-search.css">
+    <link rel="icon" type="image/x-icon" href="resources/img/favicon.ico">
 </head>
 <body>
 <a href="index.jsp" class="return-home">Back to Main Menu</a>
@@ -23,7 +27,7 @@
     </header>
 
     <main>
-        <form action="#" method="get" class="search-form">
+        <form action="simple-search.jsp" method="get" class="search-form">
             <label for="search-keyword">Keyword:</label>
             <input type="text" id="search-keyword" name="keyword" placeholder="Enter a keyword (e.g., beach, spa, hiking)">
 
@@ -38,8 +42,25 @@
 
         <section class="search-results">
             <h2>Results</h2>
+            <%
+                String keyword = request.getParameter("keyword");
+                String  priceRange = request.getParameter("price");
+                String comfortLevel = request.getParameter("comfort");
+
+                if (keyword != null && priceRange != null && comfortLevel != null) {
+            %>
+            <p>
+                <strong>Keyword:</strong> <%= !keyword.isEmpty() ? keyword : "None" %><br>
+                <strong>Price Range:</strong> <%= !priceRange.isEmpty() ? priceRange : "None" %><br>
+                <strong>Comfort Level:</strong> <%= !comfortLevel.isEmpty() ? comfortLevel : "None" %>
+            </p>
+            <%
+            } else {
+            %>
             <p>Your search results will appear here.</p>
-            <!-- Placeholder for dynamic results -->
+            <%
+                }
+            %>
         </section>
     </main>
 
