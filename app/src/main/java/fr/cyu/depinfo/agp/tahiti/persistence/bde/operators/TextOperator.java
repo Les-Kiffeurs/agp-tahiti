@@ -34,7 +34,7 @@ public class TextOperator extends AbstractFinalOperator{
 
         Map<String, String> map = new HashMap<>();
         try {
-            for (int i = 0; i < topDocs.scoreDocs.length; i++) {
+            for (int i = 0; i < topDocs.totalHits.value(); i++) {
                 int docId = topDocs.scoreDocs[i].doc;
 
                 BDeAPI api = new BDeAPI();
