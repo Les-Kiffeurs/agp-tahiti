@@ -20,7 +20,7 @@ public class TextOperator extends AbstractFinalOperator{
 
     @Override
     public void init() {
-        BDeAPI api = new BDeAPI();
+        BDeAPI api = BDeAPI.getInstance();
         LuceneFacade luceneFacade = api.getLuceneFacade();
 
         TopDocs topDocs = luceneFacade.search(getQuery());
@@ -37,7 +37,7 @@ public class TextOperator extends AbstractFinalOperator{
             for (int i = 0; i < topDocs.totalHits.value(); i++) {
                 int docId = topDocs.scoreDocs[i].doc;
 
-                BDeAPI api = new BDeAPI();
+                BDeAPI api = BDeAPI.getInstance();
                 LuceneFacade luceneFacade = api.getLuceneFacade();
                 org.apache.lucene.document.Document doc = luceneFacade.fetchDocumentById(docId);
 

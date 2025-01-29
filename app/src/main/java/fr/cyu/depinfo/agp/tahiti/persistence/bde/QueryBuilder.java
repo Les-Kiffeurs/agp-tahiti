@@ -41,7 +41,7 @@ public class QueryBuilder {
 
         TextOperator textOperator = new TextOperator(queryParts[1]);
 
-        JoinOperator joinOperator = new JoinOperator(sqlOperator, textOperator, keyColumnName);
+        JoinOperator joinOperator = new JoinOperator(sqlOperator, textOperator, keyColumnName, null);
 
         executionPlan = new ExecutionPlan(joinOperator);
     }
@@ -50,6 +50,7 @@ public class QueryBuilder {
         String whereClause = queryPart.split("WHERE")[1];
         String fromClause = queryPart.split("WHERE")[0].split("FROM")[1];
         String selectClause = queryPart.split("FROM")[0].split("SELECT")[1];
+        return whereClause + " " + fromClause + " " + selectClause;
     }
 
     private void SQLQueryCreation(String query){
