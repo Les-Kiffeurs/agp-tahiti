@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu - Tahiti Trip Planner</title>
     <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="icon" type="image/x-icon" href="resources/img/favicon.ico">
 </head>
 <body>
 <div class="container">

@@ -15,13 +15,18 @@ public class SQLOperator extends AbstractFinalOperator{
 
     public SQLOperator(String query) {
         super(query);
+        try {
+            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery());
+            resultSet = ps.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void init() {
         try {
-            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery());
-            resultSet = ps.executeQuery();
+            resultSet.beforeFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

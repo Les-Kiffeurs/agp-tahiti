@@ -24,6 +24,8 @@ dependencies {
     implementation(libs.mockito)
     implementation(libs.bundles.spring)
     implementation(libs.hibernate)
+    implementation(libs.bundles.jakarta)
+
 }
 
 testing {
