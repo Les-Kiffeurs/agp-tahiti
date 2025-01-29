@@ -40,7 +40,7 @@ class QueryBuilderTest {
         assertNotNull(executionPlan);
         assertTrue(executionPlan.getTopOperator() instanceof SQLOperator);
 
-        Map<String, String> result = executionPlan.next();
+        Map<String, Object> result = executionPlan.next();
 
         assertNotNull(result);
         assertTrue(result.containsKey("name"));

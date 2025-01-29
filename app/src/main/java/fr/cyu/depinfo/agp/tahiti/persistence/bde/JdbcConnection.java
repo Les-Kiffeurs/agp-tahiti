@@ -7,7 +7,7 @@ public class JdbcConnection {
 
     private static String user = "root";
     private static String password = "toor";
-    private static String url = "jdbc:postgresql://database:5432/test_database";
+    private static String url = "jdbc:postgresql://localhost:15432/test_database";
 
     /**
      * Lazy singleton instance.

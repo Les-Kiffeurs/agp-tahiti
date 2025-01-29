@@ -69,7 +69,7 @@ class TextOperatorTest {
         when(mockDocument.getFields()).thenReturn(List.of(new IndexableField[]{mockField}));
 
         // Appeler la méthode next()
-        Map<String, String> result = textOperator.next();
+        Map<String, Object> result = textOperator.next();
 
         // Vérifier que le résultat contient le champ
         assertNotNull(result);
@@ -82,7 +82,7 @@ class TextOperatorTest {
         when(mockTopDocs.scoreDocs).thenReturn(new ScoreDoc[]{});
 
         // Appeler la méthode next()
-        Map<String, String> result = textOperator.next();
+        Map<String, Object> result = textOperator.next();
 
         // Vérifier que le résultat est null
         assertNull(result);

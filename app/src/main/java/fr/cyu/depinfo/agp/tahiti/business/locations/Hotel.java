@@ -5,7 +5,7 @@ public class Hotel extends Location {
     private String beach;
     final Rank rank;
 
-    public Hotel(String id, String name, String address, int islandId, float rating, Position position, Rank rank, String beach, int pricePerNight) {
+    public Hotel(int id, String name, String address, int islandId, float rating, Position position, Rank rank, String beach, int pricePerNight) {
         super(id, name, address, islandId, rating, position);
         this.rank = rank;
         this.beach = beach;

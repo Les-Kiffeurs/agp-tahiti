@@ -20,12 +20,12 @@ public class JoinOperator extends AbstractComplexOperator{
     }
 
     @Override
-    public Map<String, String> next() {
-        Map<String, String> map = null;
+    public Map<String, Object> next() {
+        Map<String, Object> map = null;
         while(map == null) {
-            Map<String,String> nextLeftResult = getLeftOperator().next();
+            Map<String,Object> nextLeftResult = getLeftOperator().next();
             if (nextLeftResult != null) {
-                Map<String,String> nextRightResult = getRightOperator().next();
+                Map<String,Object> nextRightResult = getRightOperator().next();
                 while (nextRightResult != null) {
 
                     if(nextRightResult.get(joinKey).equals(nextLeftResult.get(joinKey))) {
@@ -46,8 +46,8 @@ public class JoinOperator extends AbstractComplexOperator{
         return map;
     }
 
-    private Map<String, String> buildResultLine(Map<String, String> leftResult, Map<String, String> rightResult) {
-        Map<String, String> resultLine = new HashMap<String, String>();
+    private Map<String, Object> buildResultLine(Map<String, Object> leftResult, Map<String, Object> rightResult) {
+        Map<String, Object> resultLine = new HashMap<String, Object>();
 
         for (String attribute : getFinalAttributes()) {
             if (leftResult.containsKey(attribute)) {

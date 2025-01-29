@@ -34,6 +34,7 @@ class HotelDAOTest {
             assertTrue(result instanceof Hotel);
 
             Hotel hotel = (Hotel) result;
+            System.out.println(hotel);
             assertTrue(hotel.getPricePerNight() >= minPrice);
             assertTrue(hotel.getPricePerNight() <= maxPrice);
 

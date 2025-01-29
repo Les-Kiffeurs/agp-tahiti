@@ -17,8 +17,8 @@ CREATE TABLE hotel (
                        id SERIAL PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
                        pricePerNight INT NOT NULL,
-                       latitude NUMERIC(9, 6) NOT NULL,
-                       longitude NUMERIC(9, 6) NOT NULL,
+                       latitude double precision NOT NULL,
+                       longitude double precision NOT NULL,
                        beach VARCHAR(255),
                        rating REAL CHECK (rating >= 0 AND rating <= 5), -- Vérification de l'intervalle des notes
                        address VARCHAR(255) NOT NULL,
