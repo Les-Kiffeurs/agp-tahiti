@@ -26,11 +26,13 @@
 <body>
 <h1>Search Results</h1>
 
-<p>
+<div>
+  <p>Hello</p>
   <% for (Location loc : hotels) { %>
-<p> <% ((Hotel) loc).toString(); %> </p>
+<p> <%=loc.getName()%> </p>
   <% } %>
-</p>
+  <p>World</p>
+</div>
 
 <a href="index.jsp">Back to Main Menu</a>
 </body>
