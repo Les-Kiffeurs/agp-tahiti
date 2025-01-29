@@ -42,7 +42,7 @@ public class QueryBuilder {
 
         SQLOperator sqlOperator = new SQLOperator(SQLQuery.get(1));
 
-        TextOperator textOperator = new TextOperator(queryParts[1]);
+        TextOperator textOperator = new TextOperator(queryParts[1], keyColumnName);
 
         List<String> finalAttributes = new ArrayList<String>();
         for (String attribute : SQLQuery.getFirst().split(",")) {
@@ -54,7 +54,12 @@ public class QueryBuilder {
     }
 
         private ArrayList<String> makeSQLQuery(String queryPart) {
-        String whereClause = queryPart.split("WHERE")[1];
+
+        String whereClause = null;
+        if (queryPart.contains("WHERE")){
+            whereClause = queryPart.split("WHERE")[1];
+        }
+
         String fromClause = queryPart.split("WHERE")[0].split("FROM")[1];
         String selectClause = queryPart.split("FROM")[0].split("SELECT")[1];
 
@@ -68,16 +73,22 @@ public class QueryBuilder {
 
             fromClause += ", " + tableName;
 
-            whereClause += " AND " + tableName + "." + keyColumnName + "=" + table + "." + keyColumnName ;
-
+            if (whereClause != null) {
+                whereClause += " AND " + tableName + "." + keyColumnName + "=" + table + "." + keyColumnName ;
+            }
+            else {
+                whereClause = tableName + "." + keyColumnName + "=" + table + "." + keyColumnName ;
+            }
         }
 
-        if (!selectClause.contains(keyColumnName)){
+        if (!selectClause.contains(keyColumnName) && !selectClause.contains("*")){
             selectClause += ", " + keyColumnName;
         }
 
-        String newQuery = "SELECT " + selectClause.trim() +  " FROM " + fromClause.trim() + " WHERE " + whereClause.trim();
-
+        String newQuery = "SELECT " + selectClause.trim() +  " FROM " + fromClause.trim();
+        if (whereClause != null){
+            newQuery += " WHERE " + whereClause;
+        }
 
         result.add(newQuery);
         return result;

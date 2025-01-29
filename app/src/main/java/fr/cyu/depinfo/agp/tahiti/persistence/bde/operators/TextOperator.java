@@ -14,7 +14,7 @@ public class TextOperator extends AbstractFinalOperator{
     private List<Map<String, Object>> docs;
     private Iterator<Map<String, Object>> iter;
 
-    public TextOperator(String query) {
+    public TextOperator(String query, String keyColumnName) {
         super(query);
         LuceneFacade luceneFacade = BDeAPI.getInstance().getLuceneFacade();
         topDocs = luceneFacade.search(query);
@@ -22,15 +22,17 @@ public class TextOperator extends AbstractFinalOperator{
         docs = new ArrayList<>();
 
         for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
-            Map<String, Object> map = new HashMap<>();*
+            Map<String, Object> map = new HashMap<>();
             map.put("score", scoreDoc.score);
             Document d = luceneFacade.fetchDocumentById(scoreDoc.doc);
             String key = d.get("nom").split(".txt")[0];
-            map.put("key", key);
+            map.put(keyColumnName, key);
             docs.add(map);
         }
 
         iter = docs.iterator();
+
+        System.out.println("ok");
 
     }
 
@@ -41,7 +43,10 @@ public class TextOperator extends AbstractFinalOperator{
 
     @Override
     public Map<String, Object> next() {
-        return iter.next();
+        if (iter.hasNext()) {
+            return iter.next();
+        }
+        return null;
     }
 
 
