@@ -39,4 +39,7 @@ public class BDeAPI {
         return queryBuilder.retrieveExecutionPlan();
     }
 
+    public LuceneFacade getLuceneFacade() {
+        return luceneFacade;
+    }
 }

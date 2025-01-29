@@ -21,6 +21,7 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.bundles.lucene)
     implementation(libs.postgres)
+    implementation(libs.mockito)
     implementation(libs.bundles.spring)
 }
 
