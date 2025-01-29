@@ -6,8 +6,10 @@ lucene = "10.1.0"
 postgres = "42.7.5"
 spring-framework = "6.2.2"
 mockito = "1.10.19"
+hibernate = "5.6.9.Final"
 
 [libraries]
+hibernate = { group = "org.hibernate", name = "hibernate-core", version.ref = "hibernate" }
 mockito = { group = "org.mockito", name = "mockito-all", version.ref = "mockito"}
 lucene-core = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
 lucene-queryparser = { group = "org.apache.lucene", name = "lucene-queryparser",  version.ref = "lucene" }
