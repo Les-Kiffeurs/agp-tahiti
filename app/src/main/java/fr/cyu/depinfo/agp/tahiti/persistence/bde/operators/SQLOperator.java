@@ -16,7 +16,7 @@ public class SQLOperator extends AbstractFinalOperator{
     public SQLOperator(String query) {
         super(query);
         try {
-            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery());
+            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery(),ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             resultSet = ps.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);

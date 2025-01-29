@@ -63,4 +63,16 @@ public abstract class Location {
     public double distanceFrom(Location location) {
        return this.position.distanceFrom(location.position);
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", islandId=" + islandId +
+                ", rating=" + rating +
+                ", position=" + position +
+                '}';
+    }
 }
