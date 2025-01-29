@@ -39,4 +39,11 @@ public class Position {
         return  (2*rayonTerre*asin(sqrt(pow(sin((p1-p2)/2),2)+cos(p1)*cos(p2)*pow(sin((l1-l2)/2),2))));
     }
 
+    @Override
+    public String toString() {
+        return "Position{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }
