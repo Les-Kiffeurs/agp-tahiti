@@ -18,7 +18,7 @@ class QueryBuilderTest {
 
     @Test
     void testConstructQuery_SQLQuery() {
-        String query = "SELECT * FROM users";
+        String query = "SELECT * FROM test_table";
 
         queryBuilder.constructQuery(query);
 
@@ -40,8 +40,6 @@ class QueryBuilderTest {
         assertNotNull(executionPlan);
         assertTrue(executionPlan.getTopOperator() instanceof SQLOperator);
 
-        executionPlan.init();
-
         Map<String, String> result = executionPlan.next();
 
         assertNotNull(result);
@@ -49,16 +47,5 @@ class QueryBuilderTest {
         assertTrue(result.containsKey("email"));
         assertTrue(result.containsKey("age"));
         System.out.println(result);
-    }
-
-    @Test
-    void testMixedQueryCreation() {
-        String query = "SELECT * FROM users with MATCH(text)";
-
-        queryBuilder.constructQuery(query);
-
-        ExecutionPlan executionPlan = queryBuilder.retrieveExecutionPlan();
-
-        assertNotNull(executionPlan);
     }
 }

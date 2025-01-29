@@ -17,8 +17,8 @@ public class HotelDAO implements HotelDAOInterface {
 
     private final BDeAPI bdeAPI;
 
-    public HotelDAO(BDeAPI bdeAPI) {
-        this.bdeAPI = bdeAPI;
+    public HotelDAO() {
+        this.bdeAPI = BDeAPI.getInstance();
     }
 
     @Override
@@ -75,9 +75,6 @@ public class HotelDAO implements HotelDAOInterface {
 
     private List<Location> executeQuery(String query) {
         ExecutionPlan executionPlan = bdeAPI.query(query);
-
-        executionPlan.init();
-
         return createListResult(executionPlan);
     }
 }

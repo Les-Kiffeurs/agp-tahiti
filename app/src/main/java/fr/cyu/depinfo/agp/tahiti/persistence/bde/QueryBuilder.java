@@ -50,7 +50,7 @@ public class QueryBuilder {
         String whereClause = queryPart.split("WHERE")[1];
         String fromClause = queryPart.split("WHERE")[0].split("FROM")[1];
         String selectClause = queryPart.split("FROM")[0].split("SELECT")[1];
-        return whereClause + " " + fromClause + " " + selectClause;
+        return whereClause;
     }
 
     private void SQLQueryCreation(String query){

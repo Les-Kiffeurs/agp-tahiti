@@ -17,8 +17,7 @@ class HotelDAOTest {
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-        BDeAPI bDeAPI = BDeAPI.getInstance();
-        hotelDAO = new HotelDAO(bDeAPI);
+        hotelDAO = new HotelDAO();
     }
 
     @Test

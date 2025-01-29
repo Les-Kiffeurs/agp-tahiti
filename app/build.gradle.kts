@@ -21,7 +21,6 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.bundles.lucene)
     implementation(libs.postgres)
-    implementation(libs.mockito)
     implementation(libs.bundles.spring)
 
     compileOnly(libs.lombok)
@@ -29,10 +28,12 @@ dependencies {
     testCompileOnly(libs.lombok)
     testAnnotationProcessor(libs.lombok)
 
-    testImplementation(libs.mockito)
-    implementation(libs.hibernate)
+    testImplementation(libs.bundles.mockito)
+    implementation(libs.bundles.hibernate)
     implementation(libs.bundles.jakarta)
 
+    implementation(libs.bundles.log4j)
+    implementation(libs.bundles.jackson)
 }
 
 testing {
