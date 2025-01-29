@@ -66,4 +66,7 @@ public class IndexHandler {
     public Path getIndexPath() {
         return indexPath;
     }
+
+    public IndexHandler() {
+    }
 }

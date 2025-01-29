@@ -1,5 +1,7 @@
 package fr.cyu.depinfo.agp.tahiti.persistence;
 
+import fr.cyu.depinfo.agp.tahiti.business.locations.Hotel;
+import fr.cyu.depinfo.agp.tahiti.business.locations.Location;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,7 +17,7 @@ class HotelDAOTest {
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-        BDeAPI bDeAPI = new BDeAPI();
+        BDeAPI bDeAPI = BDeAPI.getInstance();
         hotelDAO = new HotelDAO(bDeAPI);
     }
 
@@ -24,16 +26,18 @@ class HotelDAOTest {
         int minPrice = 100;
         int maxPrice = 200;
 
-        List<Map<String, String>> results =  hotelDAO.searchByPrice(minPrice, maxPrice);
+        List<Location> results =  hotelDAO.searchByPrice(minPrice, maxPrice);
 
         assertNotNull(results);
 
-        for (Map<String, String> result : results) {
-            System.out.println(result);
-            assertTrue(result.containsKey("pricepernight"));
-            int pricePerNight = Integer.parseInt(result.get("pricepernight"));
-            assertTrue(pricePerNight >= minPrice && pricePerNight <= maxPrice);
-            System.out.println(result);
+        for (Location result : results) {
+            assertNotNull(result);
+            assertTrue(result instanceof Hotel);
+
+            Hotel hotel = (Hotel) result;
+            assertTrue(hotel.getPricePerNight() >= minPrice);
+            assertTrue(hotel.getPricePerNight() <= maxPrice);
+
         }
 
     }

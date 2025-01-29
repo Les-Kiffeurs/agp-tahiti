@@ -44,4 +44,23 @@ public class LuceneFacade {
         return searchHandler.searchDocById(docID);
     }
 
+    public IndexHandler getIndexHandler() {
+        return indexHandler;
+    }
+
+    public void setIndexHandler(IndexHandler indexHandler) {
+        this.indexHandler = indexHandler;
+    }
+
+    public SearchHandler getSearchHandler() {
+        return searchHandler;
+    }
+
+    public void setSearchHandler(SearchHandler searchHandler) {
+        this.searchHandler = searchHandler;
+    }
+
+    public String getSrcFilePath() {
+        return srcFilePath;
+    }
 }
