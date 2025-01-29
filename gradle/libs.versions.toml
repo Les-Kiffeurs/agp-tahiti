@@ -5,7 +5,8 @@
 lucene = "10.1.0"
 postgres = "42.7.5"
 spring-framework = "6.2.2"
-mockito = "1.10.19"
+lombok = "1.18.36"
+mockito = "5.15.2"
 
 [libraries]
 mockito = { group = "org.mockito", name = "mockito-all", version.ref = "mockito"}
@@ -35,6 +36,8 @@ spring-web = { group = "org.springframework", name = "spring-web", version.ref =
 spring-webflux = { group = "org.springframework", name = "spring-webflux", version.ref = "spring-framework"}
 spring-webmvc = { group = "org.springframework", name = "spring-webmvc", version.ref = "spring-framework"}
 spring-websocket = { group = "org.springframework", name = "spring-websocket", version.ref = "spring-framework"}
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito"}
 
 [bundles]
 spring = ["spring-aop",

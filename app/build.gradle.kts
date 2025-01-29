@@ -23,6 +23,13 @@ dependencies {
     implementation(libs.postgres)
     implementation(libs.mockito)
     implementation(libs.bundles.spring)
+
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    testCompileOnly(libs.lombok)
+    testAnnotationProcessor(libs.lombok)
+
+    testImplementation(libs.mockito)
 }
 
 testing {
