@@ -22,8 +22,6 @@ class SQLOperatorTest {
     @Test
     void testNext(){
 
-        sqloperator.init();
-
         Map<String, String> result = sqloperator.next();
 
         assertNotNull(result);
