@@ -33,5 +33,12 @@ public class Hotel extends Location {
         return pricePerNight;
     }
 
-
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "pricePerNight=" + pricePerNight +
+                ", beach='" + beach + '\'' +
+                ", rank=" + rank +
+                "} " + super.toString();
+    }
 }

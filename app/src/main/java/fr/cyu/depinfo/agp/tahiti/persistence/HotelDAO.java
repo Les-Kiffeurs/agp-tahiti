@@ -17,8 +17,8 @@ public class HotelDAO implements HotelDAOInterface {
 
     private final BDeAPI bdeAPI;
 
-    public HotelDAO(BDeAPI bdeAPI) {
-        this.bdeAPI = bdeAPI;
+    public HotelDAO() {
+        this.bdeAPI = BDeAPI.getInstance();
     }
 
     @Override
