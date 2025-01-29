@@ -30,6 +30,9 @@ dependencies {
     testAnnotationProcessor(libs.lombok)
 
     testImplementation(libs.mockito)
+    implementation(libs.hibernate)
+    implementation(libs.bundles.jakarta)
+
 }
 
 testing {

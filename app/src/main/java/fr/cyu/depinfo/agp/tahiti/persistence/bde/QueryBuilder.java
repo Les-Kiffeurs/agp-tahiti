@@ -35,13 +35,22 @@ public class QueryBuilder {
     private void mixedQueryCreation(String query) {
         String[] queryParts = query.split("with");
 
-        SQLOperator sqlOperator = new SQLOperator(queryParts[0]);
+        String SQLQuery = makeSQLQuery(queryParts[0]);
+
+        SQLOperator sqlOperator = new SQLOperator(SQLQuery);
 
         TextOperator textOperator = new TextOperator(queryParts[1]);
 
-        JoinOperator joinOperator = new JoinOperator(sqlOperator, textOperator);
+        JoinOperator joinOperator = new JoinOperator(sqlOperator, textOperator, keyColumnName, null);
 
         executionPlan = new ExecutionPlan(joinOperator);
+    }
+
+    private String makeSQLQuery(String queryPart) {
+        String whereClause = queryPart.split("WHERE")[1];
+        String fromClause = queryPart.split("WHERE")[0].split("FROM")[1];
+        String selectClause = queryPart.split("FROM")[0].split("SELECT")[1];
+        return whereClause + " " + fromClause + " " + selectClause;
     }
 
     private void SQLQueryCreation(String query){

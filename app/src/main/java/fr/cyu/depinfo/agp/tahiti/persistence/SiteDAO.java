@@ -1,5 +1,6 @@
 package fr.cyu.depinfo.agp.tahiti.persistence;
 
+import fr.cyu.depinfo.agp.tahiti.business.locations.Location;
 import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
 
 import java.util.HashMap;
@@ -8,27 +9,27 @@ import java.util.Map;
 
 public class SiteDAO implements SiteDAOInterface {
     @Override
-    public List<Map<String, String>> searchByPrice(int minPrice, int maxPrice) {
+    public List<Location> searchByPrice(int minPrice, int maxPrice) {
         return List.of();
     }
 
     @Override
-    public List<Map<String, String>> searchByConfort(int confortLevel) {
+    public List<Location> searchByConfort(int confortLevel) {
         return List.of();
     }
 
     @Override
-    public List<Map<String, String>> searchByKeyword(String keyword) {
+    public List<Location> searchByKeyword(String keyword) {
         return List.of();
     }
 
     @Override
-    public List<Map<String, String>> searchByType(String type) {
+    public List<Location> searchByType(String type) {
         return List.of();
     }
 
     @Override
-    public List<Map<String, String>> searchByIsland(String island) {
+    public List<Location> searchByIsland(String island) {
         return List.of();
     }
 }
