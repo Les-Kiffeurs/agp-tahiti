@@ -5,7 +5,7 @@ public class Site extends Location {
     private int price;
     private int intensity;
 
-    public Site(String id, String name, String address, int islandId, float rating, String type, int price, int intensity,Position position) {
+    public Site(int id, String name, String address, int islandId, float rating, String type, int price, int intensity,Position position) {
         super(id, name, address, islandId, rating,position);
         this.type = type;
         this.price = price;

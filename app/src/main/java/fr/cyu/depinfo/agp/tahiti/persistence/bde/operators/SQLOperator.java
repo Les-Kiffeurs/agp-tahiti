@@ -33,9 +33,9 @@ public class SQLOperator extends AbstractFinalOperator{
     }
 
     @Override
-    public Map<String, String> next() {
+    public Map<String, Object> next() {
         ResultSetMetaData metaData = null;
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, Object> map = new HashMap<String, Object>();
         int colCount;
 
         try {
@@ -47,7 +47,7 @@ public class SQLOperator extends AbstractFinalOperator{
 
             for (int i = 1; i <= colCount; i++) {
                 String columnName = metaData.getColumnName(i);
-                String columnValue = resultSet.getString(i);
+                Object columnValue = resultSet.getObject(i);
                 map.put(columnName, columnValue);
             }
 

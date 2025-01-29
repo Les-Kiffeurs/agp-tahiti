@@ -1,58 +1,51 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde.operators;
 
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
-import fr.cyu.depinfo.agp.tahiti.persistence.bde.TextResults;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.LuceneFacade;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TextOperator extends AbstractFinalOperator{
 
     private TopDocs topDocs;
+    private List<Map<String, Object>> docs;
+    private Iterator<Map<String, Object>> iter;
 
-    public TextOperator(String query) {
+    public TextOperator(String query, String keyColumnName) {
         super(query);
+        LuceneFacade luceneFacade = BDeAPI.getInstance().getLuceneFacade();
+        topDocs = luceneFacade.search(query);
+
+        docs = new ArrayList<>();
+
+        for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("score", scoreDoc.score);
+            Document d = luceneFacade.fetchDocumentById(scoreDoc.doc);
+            String key = d.get("nom").split(".txt")[0];
+            map.put(keyColumnName, key);
+            docs.add(map);
+        }
+
+        iter = docs.iterator();
+
+        System.out.println("ok");
+
     }
 
     @Override
     public void init() {
-        BDeAPI api = BDeAPI.getInstance();
-        LuceneFacade luceneFacade = api.getLuceneFacade();
-
-        TopDocs topDocs = luceneFacade.search(getQuery());
+        iter = docs.iterator();
     }
 
     @Override
-    public Map<String, String> next() {
-        if (topDocs == null || topDocs.scoreDocs.length == 0) {
-            return null;
+    public Map<String, Object> next() {
+        if (iter.hasNext()) {
+            return iter.next();
         }
-
-        Map<String, String> map = new HashMap<>();
-        try {
-            for (int i = 0; i < topDocs.totalHits.value(); i++) {
-                int docId = topDocs.scoreDocs[i].doc;
-
-                BDeAPI api = BDeAPI.getInstance();
-                LuceneFacade luceneFacade = api.getLuceneFacade();
-                org.apache.lucene.document.Document doc = luceneFacade.fetchDocumentById(docId);
-
-                for (org.apache.lucene.index.IndexableField field : doc.getFields()) {
-                    String fieldName = field.name();
-                    String fieldValue = doc.get(fieldName);
-                    map.put(fieldName, fieldValue);
-                }
-
-                return map;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
         return null;
     }
 

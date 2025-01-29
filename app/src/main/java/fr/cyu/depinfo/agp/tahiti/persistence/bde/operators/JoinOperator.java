@@ -20,36 +20,36 @@ public class JoinOperator extends AbstractComplexOperator{
     }
 
     @Override
-    public Map<String, String> next() {
-        Map<String, String> map = null;
-        while(map == null) {
-            Map<String,String> nextLeftResult = getLeftOperator().next();
-            if (nextLeftResult != null) {
-                Map<String,String> nextRightResult = getRightOperator().next();
-                while (nextRightResult != null) {
+    public Map<String, Object> next() {
+        Map<String, Object> map = null;
+        Map<String, Object> nextLeftResult;
+        while (map == null && (nextLeftResult = getLeftOperator().next()) != null) {
+            Map<String, Object> nextRightResult = getRightOperator().next();
+            while (nextRightResult != null) {
+                if (nextRightResult.get(joinKey).equals(nextLeftResult.get(joinKey).toString())) {
 
-                    if(nextRightResult.get(joinKey).equals(nextLeftResult.get(joinKey))) {
-                        map = buildResultLine(nextLeftResult, nextRightResult);
-                        break;
-                    }
-
-                    nextRightResult = getRightOperator().next();
+                    map = buildResultLine(nextLeftResult, nextRightResult);
+                    break;
                 }
-                if (map == null) {
-                    getRightOperator().init();
-                }
+                nextRightResult = getRightOperator().next();
             }
-            else{
+            if (map == null) {
                 getRightOperator().init();
             }
         }
         return map;
     }
 
-    private Map<String, String> buildResultLine(Map<String, String> leftResult, Map<String, String> rightResult) {
-        Map<String, String> resultLine = new HashMap<String, String>();
+    private Map<String, Object> buildResultLine(Map<String, Object> leftResult, Map<String, Object> rightResult) {
+        Map<String, Object> resultLine = new HashMap<String, Object>();
 
         for (String attribute : getFinalAttributes()) {
+
+            if (attribute.equals("*")){
+                resultLine.putAll(leftResult);
+                break;
+            }
+
             if (leftResult.containsKey(attribute)) {
                 resultLine.put(attribute, leftResult.get(attribute));
             }

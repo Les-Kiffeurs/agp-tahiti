@@ -24,7 +24,7 @@ public class ExecutionPlan {
         topOperator.init();
     }
 
-    public Map<String, String> next(){
+    public Map<String, Object> next(){
         return topOperator.next();
     }
 }
