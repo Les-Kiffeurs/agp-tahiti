@@ -24,7 +24,10 @@ public class SearchHandler {
     public SearchHandler() {}
 
     public TopDocs search(String query) {
+
         TopDocs resultats;
+
+        String finalQuery = parseQuery(query);
         try {
             Directory index = FSDirectory.open(indexPath);
             ireader = DirectoryReader.open(index);
@@ -68,6 +71,11 @@ public class SearchHandler {
 
     public void setIndexPath(Path indexPath) {
         this.indexPath = indexPath;
+    }
+
+    public String parseQuery(String query) {
+        String finalQuery = query.replaceAll(" ", "OR");
+        return finalQuery;
     }
 
 }
