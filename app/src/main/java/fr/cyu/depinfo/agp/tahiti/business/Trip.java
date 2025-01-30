@@ -8,35 +8,26 @@ public class Trip {
     private Transport transportMode;
     private final Location departure;
     private final Location destination;
-    private double distance;
     private double price;
 
-    public Trip(Location departure, Location destination, Transport transportMode) {
+    public Trip(Location departure, Location destination) {
         this.departure = departure;
         this.destination = destination;
-        this.transportMode = transportMode;
-        this.distance = travelDistance();
-        System.out.println("Distance: "+distance + "Transport prix " + transportMode.getPricePerKm());
-        this.price = (distance/1000) * transportMode.getPricePerKm();
     }
 
-    public double travelDistance() {
-        return departure.distanceFrom(destination);
+    public int travelDistance() {
+        return (int) departure.distanceFrom(destination);
     }
 
     public Duration duration() {
-        double distance = travelDistance();
+        float distance = travelDistance();
         float speed = transportMode.getSpeed();
         return Duration.ofSeconds((long) (distance / speed));
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public Trip setPrice(double price) {
-        this.price = price;
-        return this;
+    public float price() {
+        int distance = Math.round(travelDistance() / 1000f);
+        return distance * transportMode.getPricePerKm();
     }
 
     public Location getDeparture() {
@@ -51,16 +42,14 @@ public class Trip {
         return transportMode;
     }
 
+    public double getPrice() {
+        this.price = travelDistance()/1000f * transportMode.getPricePerKm();
+        return price;
+    }
+
     public Trip setTransportMode(Transport transportMode) {
         this.transportMode = transportMode;
         return this;
     }
 
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
 }
