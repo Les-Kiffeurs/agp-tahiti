@@ -22,4 +22,8 @@ public class Transport {
     public float getSpeed() {
         return speed;
     }
+
+    public String toString() {
+        return "Type: " + type + "price per km: " + pricePerKm + "speed: " + speed;
+    }
 }
