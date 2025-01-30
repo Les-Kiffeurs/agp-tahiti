@@ -22,9 +22,14 @@ public class QueryBuilder {
         this.keyColumnName = keyColumnName;
     }
 
-    public void constructQuery(String query) {
+    public void constructQuery(String query) throws QueryBuilderArgumentMissing {
         if(query.contains("with")) {
-            mixedQueryCreation(query);
+
+            try {
+                mixedQueryCreation(query);
+            } catch (QueryBuilderArgumentMissing e) {
+                throw e;
+            }
         }
         else{
             SQLQueryCreation(query);
@@ -35,7 +40,12 @@ public class QueryBuilder {
         return executionPlan;
     }
 
-    private void mixedQueryCreation(String query) {
+    private void mixedQueryCreation(String query) throws QueryBuilderArgumentMissing {
+
+        if(tableName == null || keyColumnName == null){
+            throw new QueryBuilderArgumentMissing("Cannot build mixed query without specifying text search parameters");
+        }
+
         String[] queryParts = query.split("with");
 
         ArrayList<String> SQLQuery = makeSQLQuery(queryParts[0]);

@@ -25,6 +25,10 @@ public class SearchHandler {
 
     public TopDocs search(String query) {
 
+        if (indexPath == null) {
+            throw new LuceneParameterNotSet("Trying to search without creating an index");
+        }
+
         TopDocs resultats;
 
         String finalQuery = parseQuery(query);

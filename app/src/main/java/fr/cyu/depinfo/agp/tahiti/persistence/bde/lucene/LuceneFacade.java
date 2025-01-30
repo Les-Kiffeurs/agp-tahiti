@@ -25,8 +25,7 @@ public class LuceneFacade {
     public void createIndex(String destPath) {
 
         if (srcFilePath == null) {
-            System.err.println("srcFilePath is not set");
-            throw new RuntimeException("srcFilePath is not set");
+            throw new LuceneParameterNotSet("Source path not set before creating index");
         }
 
         indexHandler.createIndex(destPath);
