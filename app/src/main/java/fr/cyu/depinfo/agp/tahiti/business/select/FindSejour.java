@@ -109,7 +109,7 @@ public class FindSejour {
                     }else{
                         transportMode= new Transport("Bus",0.05f,10);
                     }
-                    Trip trip = new Trip(lastLocation, site, transportMode);
+                    Trip trip = new Trip(lastLocation, site).setTransportMode(transportMode);
                     try {
                         excursion.addSite(trip);
                         activitiesAddedToday++;
@@ -144,7 +144,7 @@ public class FindSejour {
                 }else{
                     transportMode= new Transport("Bus",0.05f,10);
                 }
-                Trip returnTrip = new Trip(lastLocation, currentHotel, transportMode);
+                Trip returnTrip = new Trip(lastLocation, currentHotel).setTransportMode(transportMode);
                 try {
                     excursion.addSite(returnTrip);
                 } catch (Exception e) {
@@ -172,7 +172,7 @@ public class FindSejour {
                         }else{
                             transportMode= new Transport("Bus",0.05f,10);
                         }
-                        Trip moveTrip = new Trip(lastLocation, nextHotel, transportMode);
+                        Trip moveTrip = new Trip(lastLocation, nextHotel).setTransportMode(transportMode);
                         try {
                             excursion.addSite(moveTrip);
                         } catch (Exception e) {
@@ -194,7 +194,7 @@ public class FindSejour {
                         }else{
                             transportMode= new Transport("Bus",0.05f,10);
                         }
-                        Trip moveTrip = new Trip(lastLocation, currentHotel, transportMode);
+                        Trip moveTrip = new Trip(lastLocation, currentHotel).setTransportMode(transportMode);
                         try {
                             excursion.addSite(moveTrip);
                         } catch (Exception e) {
