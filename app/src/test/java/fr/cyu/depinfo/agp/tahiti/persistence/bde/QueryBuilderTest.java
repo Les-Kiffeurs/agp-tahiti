@@ -53,7 +53,7 @@ class QueryBuilderTest {
             e.printStackTrace();
         }
 
-        bdeAPI.setTextSearchInfo("activity", "id", TEST_DIR);
+        bdeAPI.setTextSearchInfo("site", "id", TEST_DIR);
         bdeAPI.createTextIndex(TEST_DIR_INDEX);
         queryBuilder = bdeAPI.getQueryBuilder();
     }
@@ -134,7 +134,7 @@ class QueryBuilderTest {
 
     @Test
     void testMixedQueryCreation() {
-        String query = "SELECT * FROM activity with Escalade";
+        String query = "SELECT * FROM site with Escalade";
 
         queryBuilder.constructQuery(query);
         ExecutionPlan executionPlan = queryBuilder.retrieveExecutionPlan();
