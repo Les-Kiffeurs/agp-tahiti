@@ -1,7 +1,9 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde.operators;
 
-import fr.cyu.depinfo.agp.tahiti.persistence.bde.JdbcConnection;
+import fr.cyu.depinfo.agp.tahiti.persistence.bde.PersistenceConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -15,8 +17,11 @@ public class SQLOperator extends AbstractFinalOperator{
 
     public SQLOperator(String query) {
         super(query);
+
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);
+        DataSource ds = context.getBean(DataSource.class);
         try {
-            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery(),ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            PreparedStatement ps = ds.getConnection().prepareStatement(getQuery(),ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             resultSet = ps.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
