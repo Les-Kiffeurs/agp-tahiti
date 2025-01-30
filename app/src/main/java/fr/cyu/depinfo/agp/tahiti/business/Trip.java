@@ -11,18 +11,13 @@ public class Trip {
     private double distance;
     private double price;
 
-    public Trip(Location departure, Location destination) {
+    public Trip(Location departure, Location destination, Transport transportMode) {
         this.departure = departure;
         this.destination = destination;
-        if(departure.getIslandId() != destination.getIslandId()) {
-            this.transportMode= new Transport("Boat",0.1f,14);
-        } else if (departure.getIslandId()==destination.getIslandId() && departure.distanceFrom(destination)<1) {
-            this.transportMode= new Transport("Feet",0,1);
-        }else{
-            this.transportMode= new Transport("Bus",0.05f,10);
-        }
+        this.transportMode = transportMode;
         this.distance = travelDistance();
-        this.price = distance/1000 * transportMode.getPricePerKm();
+        System.out.println("Distance: "+distance + "Transport prix " + transportMode.getPricePerKm());
+        this.price = (distance/1000) * transportMode.getPricePerKm();
     }
 
     public double travelDistance() {

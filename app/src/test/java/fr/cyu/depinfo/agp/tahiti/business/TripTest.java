@@ -14,7 +14,7 @@ class TripTest {
         Hotel h2 = new Hotel(2, "h2", "0", 0, 0, new Position(48.89489626600102,2.2288385749644704), Rank.LOW, "0", 0);
         Transport fiveKpHTransportMode = new Transport("5KpHTransport", 0, 5/3.6f);
 
-        Trip t = new Trip(h1, h2).setTransportMode(fiveKpHTransportMode);
+        Trip t = new Trip(h1, h2, fiveKpHTransportMode);
         System.out.println("Temps : " + t.duration().getSeconds());
         assertTrue(t.duration().getSeconds() >= 7200 - 100 && t.duration().getSeconds() <= 7200 + 100);
     }
@@ -25,7 +25,8 @@ class TripTest {
         Hotel h2 = new Hotel(2, "h2", "0", 0, 0, new Position(48.89489626600102,2.2288385749644704), Rank.LOW, "0", 0);
         Transport fiveEpKmTransportMode = new Transport("5EpKmTransport", 1, 5/3.6f);
 
-        Trip t = new Trip(h1, h2).setTransportMode(fiveEpKmTransportMode);
-        assertEquals(10, t.price(), 0.001);
+        Trip t = new Trip(h1, h2, fiveEpKmTransportMode);
+        System.out.println("Distance : " + t.getDistance());
+        assertEquals(10, t.getPrice(), 0.001);
     }
 }

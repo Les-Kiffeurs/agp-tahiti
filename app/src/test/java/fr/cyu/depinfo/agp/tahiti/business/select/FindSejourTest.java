@@ -150,7 +150,7 @@ public class FindSejourTest {
             System.out.println("      Trips:");
 
             for (Trip trip: excursion.getSites()) {
-                System.out.println("Price: " + trip.price()+ " Distance: "+ trip.getDistance());
+                System.out.println("Price: " + trip.getPrice()+ " Distance: "+ trip.getDistance());
                 System.out.println("Transport mode: " + trip.getTransportMode().toString());
                 System.out.println("Departure        - " + trip.getDeparture().getName());
                 System.out.println("Destination      - " + trip.getDestination().getName());
