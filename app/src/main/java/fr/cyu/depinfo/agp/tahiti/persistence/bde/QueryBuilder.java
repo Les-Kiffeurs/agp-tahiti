@@ -71,8 +71,13 @@ public class QueryBuilder {
             whereClause = queryPart.split("WHERE")[1];
         }
 
+        System.out.println("QUERY PART " + queryPart);
+
         String fromClause = queryPart.split("WHERE")[0].split("FROM")[1];
         String selectClause = queryPart.split("FROM")[0].split("SELECT")[1];
+
+        System.out.println("FROM CLAUSE " + fromClause + " SELECT CAUSE " + selectClause);
+        System.out.println("Nom de la table " + tableName);
 
         ArrayList<String> result = new ArrayList<String>();
 

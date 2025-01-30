@@ -13,4 +13,8 @@ public interface SiteDAOInterface extends SimpleSearchDAOInterface<Site> {
     List<Site> searchByKeyword(String keyword);
 
     List<Site> searchByType(String type);
+
+    List<Site> getAllActivities();
+
+    Site getSiteById(String id);
 }

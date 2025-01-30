@@ -7,9 +7,7 @@ import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +31,12 @@ public class SiteDAO implements SiteDAOInterface {
     }
 
     @Override
+    public List<Site> getAllActivities() {
+        String query = "SELECT * FROM site";
+        return executeQuery(query);
+    }
+
+    @Override
     public List<Site> searchByKeyword(String keywords) {
         String query = String.format("SELECT * FROM site with %s", keywords);
 
@@ -45,6 +49,17 @@ public class SiteDAO implements SiteDAOInterface {
 
         return executeQuery(query);
     }
+
+    @Override
+    public Site getSiteById(String id) {
+        String query = String.format("SELECT * FROM site WHERE id = %s", id);
+        List<Site> sites = this.executeQuery(query);
+        if (sites.isEmpty()) {
+            return null;
+        }
+        return sites.getFirst();
+    }
+
 
     @Override
     public List<Site> searchByIsland(String island) {
@@ -88,6 +103,7 @@ public class SiteDAO implements SiteDAOInterface {
     }
 
     private List<Site> executeQuery(String query) {
+        System.out.println(query);
         ExecutionPlan executionPlan = bdeAPI.query(query);
         executionPlan.executeQuery();
         return createListResult(executionPlan);

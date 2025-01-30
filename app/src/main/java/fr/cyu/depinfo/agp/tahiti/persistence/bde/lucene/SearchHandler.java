@@ -30,8 +30,15 @@ public class SearchHandler {
         }
 
         TopDocs resultats;
+        String finalQuery;
 
-        String finalQuery = parseQuery(query);
+        if(query.trim().split(" ").length > 1) {
+            finalQuery= parseQuery(query);
+        }
+        else {
+            finalQuery = query;
+        }
+
         try {
             Directory index = FSDirectory.open(indexPath);
             ireader = DirectoryReader.open(index);

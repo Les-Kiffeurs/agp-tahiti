@@ -63,6 +63,7 @@ public class Offer {
     public double calculatePrice() {
         double total = 0.0;
         for (Excursion excursion : this.getExcursions().values()) {
+            total += excursion.getDestination().getPricePerNight();
             for(Trip trip : excursion.getTrips()){
                 total += trip.getPrice();
             }

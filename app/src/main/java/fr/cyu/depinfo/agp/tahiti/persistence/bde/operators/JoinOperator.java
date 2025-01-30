@@ -32,7 +32,9 @@ public class JoinOperator extends AbstractComplexOperator{
         while (map == null && (nextLeftResult = getLeftOperator().next()) != null) {
             Map<String, Object> nextRightResult = getRightOperator().next();
             while (nextRightResult != null) {
-                if (nextRightResult.get(joinKey).equals(nextLeftResult.get(joinKey).toString())) {
+                String leftKey = nextLeftResult.get(joinKey).toString();
+                leftKey = leftKey.trim().replaceAll(" ", "-");
+                if (nextRightResult.get(joinKey).equals(leftKey)) {
 
                     map = buildResultLine(nextLeftResult, nextRightResult);
                     break;

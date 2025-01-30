@@ -1,16 +1,14 @@
 package fr.cyu.depinfo.agp.tahiti.business.select;
 
-import fr.cyu.depinfo.agp.tahiti.business.locations.Position;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Site;
-import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.persistence.SiteDAO;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.swing.*;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SelectAct {
 
@@ -44,65 +42,30 @@ public class SelectAct {
         return (probas.length - 1) * duration;
     }
 
-    //a supprimer quand connexion db
-    private Site getRandomActivity() {
-        // Return some placeholder Site with fake data
-        return new Site(
-                1,
-                "Fake description",
-                "Fake address",
-                1,
-                5.0f,
-                "Activity",
-                0,
-                1,
-                new Position(0.0, 0.0)
-        );
-    }
 
-    // a suppr quand connexion db
-    List<Site> getActivities(List<String> keyword) {
-        // For testing, return a small list of dummy Sites
-        List<Site> dummyList = new ArrayList<>();
-        dummyList.add(new Site(
-                2,
-                "Fake desc 1",
-                "Fake address 1",
-                1,
-                4.5f,
-                "Activity",
-                0,
-                1,
-                new Position(-17.5324608, -149.5677151)
-        ));
-        dummyList.add(new Site(
-                3,
-                "Fake desc 2",
-                "Fake address 2",
-                1,
-                3.5f,
-                "Activity",
-                0,
-                1,
-                new Position(-17.5324608, -149.5677151)
-        ));
-        return dummyList;
-    }
 
     public List<Site> fillAct(List<Site> activities, int nbActMax) {
-        while(activities.size() < nbActMax) {
-            activities.add(getRandomActivity());
+        Map<Integer, Site> siteMap = new HashMap<>();
+        List<Site> allSites = new SiteDAO().getAllActivities();
+
+        for (Site site : allSites) {
+            siteMap.put(site.getId(), site);
+        }
+
+        while (activities.size() < nbActMax) {
+            int id = (int) (Math.random() * (activities.size() - 1)) + 1;
+            activities.add(siteMap.get(id));
         }
         return activities;
     }
 
 
-    public List<Site> SelectAct(int prix, int duration, int comfort, List<String> keyword){
+    public List<Site> SelectAct(List<Site> activities, int prix, int duration, int comfort) {
         int nbActMax = nbActMax(duration,comfort);
-        List<Site> activities = getActivities(keyword);
         if(activities.size() < nbActMax){
             activities = fillAct(activities, nbActMax);
         } else if (activities.size()>nbActMax) {
+            Collections.shuffle(activities);
             activities = activities.subList(0, nbActMax);
         }
         return activities;
