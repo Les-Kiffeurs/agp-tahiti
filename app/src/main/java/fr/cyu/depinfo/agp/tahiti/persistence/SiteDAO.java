@@ -31,7 +31,7 @@ public class SiteDAO implements SiteDAOInterface {
 
     @Override
     public List<Site> searchByKeyword(String keywords) {
-        String query = String.format("SELECT * FROM activity with %s", keywords);
+        String query = String.format("SELECT * FROM site with %s", keywords);
 
 
         return executeQuery(query);
@@ -55,11 +55,11 @@ public class SiteDAO implements SiteDAOInterface {
             int price = (int) result.get("price");
             String name = (String) result.get("name");
             int id = (int) result.get("id");
-            double latitude = ((BigDecimal) result.get("latitude")).doubleValue();
-            double longitude = ((BigDecimal) result.get("longitude")).doubleValue();
+            double latitude = ((Float) result.get("latitude")).doubleValue();
+            double longitude = ((Float) result.get("longitude")).doubleValue();
             Position pos = new Position(latitude, longitude);
             String type = (String) result.get("type");
-            int islandId = (int) result.get("islandid");
+            int islandId = (int) result.get("island_id");
             float rating = (Float) result.get("rating");
             String address = (String) result.get("address");
             int intensity = (int) result.get("intensity");
