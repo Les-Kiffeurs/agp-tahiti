@@ -2,6 +2,7 @@ package fr.cyu.depinfo.agp.tahiti.business.select;
 
 import fr.cyu.depinfo.agp.tahiti.business.Offer;
 import fr.cyu.depinfo.agp.tahiti.business.Excursion;
+import fr.cyu.depinfo.agp.tahiti.business.Transport;
 import fr.cyu.depinfo.agp.tahiti.business.Trip;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Hotel;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Location; // or "Site"
@@ -100,7 +101,15 @@ public class FindSejour {
                     Location site = relevantActivities.get(i);
 
                     // Create a Trip from lastLocation -> site
-                    Trip trip = new Trip(lastLocation, site);
+                    Transport transportMode;
+                    if(lastLocation.getIslandId() != site.getIslandId()) {
+                        transportMode= new Transport("Boat",0.1f,14);
+                    } else if (lastLocation.getIslandId()==site.getIslandId() && lastLocation.distanceFrom(site)<1) {
+                        transportMode= new Transport("Feet",0,1);
+                    }else{
+                        transportMode= new Transport("Bus",0.05f,10);
+                    }
+                    Trip trip = new Trip(lastLocation, site, transportMode);
                     try {
                         excursion.addSite(trip);
                         activitiesAddedToday++;
@@ -127,7 +136,15 @@ public class FindSejour {
 
             if (activitiesAddedToday > 0 && stillHasActivities) {
                 // a) We had activities, and there's more left => come back to same hotel
-                Trip returnTrip = new Trip(lastLocation, currentHotel);
+                Transport transportMode;
+                if(lastLocation.getIslandId() != currentHotel.getIslandId()) {
+                    transportMode= new Transport("Boat",0.1f,14);
+                } else if (lastLocation.getIslandId()==currentHotel.getIslandId() && lastLocation.distanceFrom(currentHotel)<1) {
+                    transportMode= new Transport("Feet",0,1);
+                }else{
+                    transportMode= new Transport("Bus",0.05f,10);
+                }
+                Trip returnTrip = new Trip(lastLocation, currentHotel, transportMode);
                 try {
                     excursion.addSite(returnTrip);
                 } catch (Exception e) {
@@ -147,7 +164,15 @@ public class FindSejour {
                     // but only if we actually visited something this day
                     // or if you want an explicit "move" even if we had zero activities
                     if (activitiesAddedToday > 0) {
-                        Trip moveTrip = new Trip(lastLocation, nextHotel);
+                        Transport transportMode;
+                        if(lastLocation.getIslandId() != nextHotel.getIslandId()) {
+                            transportMode= new Transport("Boat",0.1f,14);
+                        } else if (lastLocation.getIslandId()==nextHotel.getIslandId() && lastLocation.distanceFrom(nextHotel)<1) {
+                            transportMode= new Transport("Feet",0,1);
+                        }else{
+                            transportMode= new Transport("Bus",0.05f,10);
+                        }
+                        Trip moveTrip = new Trip(lastLocation, nextHotel, transportMode);
                         try {
                             excursion.addSite(moveTrip);
                         } catch (Exception e) {
@@ -161,7 +186,15 @@ public class FindSejour {
                     // No more hotels left at all
                     // Optionally create a return trip if day had at least 1 activity:
                     if (activitiesAddedToday > 0) {
-                        Trip moveTrip = new Trip(lastLocation, currentHotel);
+                        Transport transportMode;
+                        if(lastLocation.getIslandId() != currentHotel.getIslandId()) {
+                            transportMode= new Transport("Boat",0.1f,14);
+                        } else if (lastLocation.getIslandId()==currentHotel.getIslandId() && lastLocation.distanceFrom(currentHotel)<1) {
+                            transportMode= new Transport("Feet",0,1);
+                        }else{
+                            transportMode= new Transport("Bus",0.05f,10);
+                        }
+                        Trip moveTrip = new Trip(lastLocation, currentHotel, transportMode);
                         try {
                             excursion.addSite(moveTrip);
                         } catch (Exception e) {
