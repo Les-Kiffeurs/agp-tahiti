@@ -23,7 +23,7 @@
 
     <main>
         <div class="menu">
-            <a href="travel-configurator.jsp" class="menu-item">
+            <a href="search/complex-search.jsp" class="menu-item">
                 <h2>Travel Planner</h2>
                 <p>Customize your trip by choosing hotels, comfort levels, and price range.</p>
             </a>

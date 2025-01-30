@@ -10,4 +10,5 @@ import java.util.Map;
 public interface HotelDAOInterface extends SimpleSearchDAOInterface<Hotel>{
 
     List<Hotel> searchByRating(int rate);
+    List<Hotel> getAllHotels();
 }

@@ -1,11 +1,11 @@
 package fr.cyu.depinfo.agp.tahiti.business.select;
 
 import fr.cyu.depinfo.agp.tahiti.business.locations.Hotel;
+import fr.cyu.depinfo.agp.tahiti.business.locations.Location;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Position;
+import fr.cyu.depinfo.agp.tahiti.business.locations.Site;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class KMeansClustering {
     
@@ -108,5 +108,30 @@ public class KMeansClustering {
             }
         }
         return bestHotels;
+    }
+
+    public static Map<Hotel, List<Location>> buildActivitesMap(List<Hotel> hotels, List<Site> activities) {
+        Map<Hotel, List<Location>> activitiesPerHotel = new HashMap<>();
+        for (Hotel h : hotels) {
+            activitiesPerHotel.put(h, new ArrayList<>());
+        }
+
+        for (Site site : activities) {
+            Hotel closest = null;
+            double minDist = Double.MAX_VALUE;
+            for (Hotel h : hotels) {
+                double dist = h.distanceFrom(site);
+                if (dist < minDist) {
+                    minDist = dist;
+                    closest = h;
+                }
+            }
+            if (closest != null) {
+                // Site extends Location => OK
+                activitiesPerHotel.get(closest).add(site);
+            }
+        }
+
+        return activitiesPerHotel;
     }
 }

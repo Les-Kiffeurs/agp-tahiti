@@ -14,6 +14,7 @@ public class SelectHotels {
 
     public List<Hotel> selectHotels(List<Site> activities,List<Hotel> hotels,int prix, int nbHotels, int comfort, int duration) {
         double prixAct = 0;
+        System.out.println(activities);
         for (Site activity : activities) {
             prixAct += activity.getPrice();
         }

@@ -49,8 +49,8 @@ public class SiteDAO implements SiteDAOInterface {
             return null;
         }
         return sites.getFirst();
-
     }
+
 
     @Override
     public List<Site> searchByIsland(String island) {
