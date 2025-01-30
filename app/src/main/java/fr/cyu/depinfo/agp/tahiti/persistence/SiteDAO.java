@@ -4,6 +4,8 @@ import fr.cyu.depinfo.agp.tahiti.business.locations.*;
 import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,9 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class SiteDAO implements SiteDAOInterface {
-
-    private BDeAPI bdeAPI = BDeAPI.getInstance();
+    @Autowired
+    private BDeAPI bdeAPI;
 
     public BDeAPI getBdeAPI() {
         return bdeAPI;

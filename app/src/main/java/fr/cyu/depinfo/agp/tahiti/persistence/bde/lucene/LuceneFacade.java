@@ -2,21 +2,18 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.TopDocs;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
+@Component
 public class LuceneFacade {
-
     private IndexHandler indexHandler;
     private SearchHandler searchHandler;
 
     private String srcFilePath;
-
-    public LuceneFacade() {
-        indexHandler = new IndexHandler();
-        searchHandler = new SearchHandler();
-    }
 
     public void setSrcFilePath(String srcFilePath){
         this.srcFilePath = srcFilePath;
@@ -48,6 +45,7 @@ public class LuceneFacade {
         return indexHandler;
     }
 
+    @Autowired
     public void setIndexHandler(IndexHandler indexHandler) {
         this.indexHandler = indexHandler;
     }
@@ -56,6 +54,7 @@ public class LuceneFacade {
         return searchHandler;
     }
 
+    @Autowired
     public void setSearchHandler(SearchHandler searchHandler) {
         this.searchHandler = searchHandler;
     }

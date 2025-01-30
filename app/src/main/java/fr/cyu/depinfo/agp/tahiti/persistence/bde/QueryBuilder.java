@@ -3,12 +3,13 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.JoinOperator;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.SQLOperator;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.TextOperator;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class QueryBuilder {
-
     private ExecutionPlan executionPlan;
 
     private String tableName;
