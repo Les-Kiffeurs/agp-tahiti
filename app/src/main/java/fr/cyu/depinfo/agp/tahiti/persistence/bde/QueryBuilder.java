@@ -53,7 +53,7 @@ public class QueryBuilder {
         executionPlan = new ExecutionPlan(joinOperator);
     }
 
-        private ArrayList<String> makeSQLQuery(String queryPart) {
+    private ArrayList<String> makeSQLQuery(String queryPart) {
 
         String whereClause = null;
         if (queryPart.contains("WHERE")){
