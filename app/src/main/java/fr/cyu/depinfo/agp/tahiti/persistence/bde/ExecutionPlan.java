@@ -24,6 +24,10 @@ public class ExecutionPlan {
         topOperator.init();
     }
 
+    public void executeQuery(){
+        topOperator.executeQuery();
+    }
+
     public Map<String, Object> next(){
         return topOperator.next();
     }

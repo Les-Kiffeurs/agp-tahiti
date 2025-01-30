@@ -24,7 +24,10 @@ public class SearchHandler {
     public SearchHandler() {}
 
     public TopDocs search(String query) {
+
         TopDocs resultats;
+
+        String finalQuery = parseQuery(query);
         try {
             Directory index = FSDirectory.open(indexPath);
             ireader = DirectoryReader.open(index);
@@ -34,7 +37,7 @@ public class SearchHandler {
             Analyzer analyseur = new StandardAnalyzer();
 
             QueryParser qp = new QueryParser("contenu", analyseur);
-            Query req = qp.parse(query);
+            Query req = qp.parse(finalQuery);
 
             resultats = searcher.search(req, MAX_RESULTS);
         } catch (IOException | ParseException e) {
@@ -68,6 +71,11 @@ public class SearchHandler {
 
     public void setIndexPath(Path indexPath) {
         this.indexPath = indexPath;
+    }
+
+    public String parseQuery(String query) {
+        String finalQuery = query.replaceAll(" ", " OR ");
+        return finalQuery;
     }
 
 }

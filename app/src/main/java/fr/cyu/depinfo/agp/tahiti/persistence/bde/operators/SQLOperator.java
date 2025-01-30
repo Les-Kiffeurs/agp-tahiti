@@ -17,21 +17,24 @@ public class SQLOperator extends AbstractFinalOperator{
 
     public SQLOperator(String query) {
         super(query);
-
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);
-        DataSource ds = context.getBean(DataSource.class);
-        try {
-            PreparedStatement ps = ds.getConnection().prepareStatement(getQuery(),ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            resultSet = ps.executeQuery();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
     public void init() {
         try {
             resultSet.beforeFirst();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void executeQuery() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);
+        DataSource ds = context.getBean(DataSource.class);
+        try {
+            PreparedStatement ps = ds.getConnection().prepareStatement(getQuery(),ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            resultSet = ps.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
