@@ -8,7 +8,6 @@ public class Trip {
     private Transport transportMode;
     private final Location departure;
     private final Location destination;
-    private double price;
 
     public Trip(Location departure, Location destination) {
         this.departure = departure;
@@ -23,11 +22,6 @@ public class Trip {
         float distance = travelDistance();
         float speed = transportMode.getSpeed();
         return Duration.ofSeconds((long) (distance / speed));
-    }
-
-    public float price() {
-        int distance = Math.round(travelDistance() / 1000f);
-        return distance * transportMode.getPricePerKm();
     }
 
     public Location getDeparture() {
