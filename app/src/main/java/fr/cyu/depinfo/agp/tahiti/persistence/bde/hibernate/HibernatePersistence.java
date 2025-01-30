@@ -19,7 +19,6 @@ public class HibernatePersistence implements StatisticPersistence {
         Transaction transaction = session.beginTransaction();
         OfferData data = new OfferData(offer.getArrivalDate(), offer.getDepartureDate(), offer.getDestination(), offer.getExcursions(), offer.getScore());
 
-        Serializable id = session.save(data);
         transaction.commit();
 
         session.close();
