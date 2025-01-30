@@ -33,7 +33,7 @@ public class FindSejourTest {
         );
 
         // Create a few mock locations for the single hotel
-        Location beach = new Site(2,
+        Location beach = new Site(1,
                 "Tahiti Safari Islander",
                 "Papeete, Polynésie française, 98714",
                 1,
@@ -43,7 +43,7 @@ public class FindSejourTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
                 );
-        Location museum = new Site(3,
+        Location museum = new Site(2,
                 "École De Surf Tura'i Mataare",
                 "Punaauia, Polynésie française, 98718",
                 1,
@@ -53,7 +53,7 @@ public class FindSejourTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
         );
-        Location temple = new Site(4,
+        Location temple = new Site(3,
                 "Tahiti Limousine - Service Vip",
                 "Papeete, Polynésie française, 98714",
                 1,
@@ -63,7 +63,7 @@ public class FindSejourTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
         );
-        Location snorkeling =new Site(5,
+        Location snorkeling =new Site(4,
                 "Centre Equestre L'Eperon",
                 "Pirae, 98716",
                 1,

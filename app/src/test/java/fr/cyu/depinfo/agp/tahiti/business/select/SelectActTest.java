@@ -88,8 +88,8 @@ public class SelectActTest {
                 List<Site> bigList = new ArrayList<>();
                 for (int i = 0; i < 10; i++) {
                     bigList.add(new Site(
+                            i,
                             "DummyActivity" + i,
-                            "Fake desc " + i,
                             "Fake address " + i,
                             1,
                             4.5f,

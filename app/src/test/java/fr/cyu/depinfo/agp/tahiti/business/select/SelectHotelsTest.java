@@ -20,7 +20,7 @@ public class SelectHotelsTest {
         // 1) Create dummy "activities" data
         //    Suppose each 'Site' has a name, price, and Position (lat, lng).
         List<Site> activities = new ArrayList<>();
-        activities.add(new Site("Beach",
+        activities.add(new Site(1,
                 "Tahiti Safari Islander",
                 "Papeete, Polynésie française, 98714",
                 1,
@@ -30,7 +30,7 @@ public class SelectHotelsTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
         ));
-        activities.add(new Site("museum",
+        activities.add(new Site(2,
                 "École De Surf Tura'i Mataare",
                 "Punaauia, Polynésie française, 98718",
                 1,
@@ -40,7 +40,7 @@ public class SelectHotelsTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
         ));
-        activities.add(new Site("temple",
+        activities.add(new Site(3,
                 "Tahiti Limousine - Service Vip",
                 "Papeete, Polynésie française, 98714",
                 1,
@@ -55,7 +55,7 @@ public class SelectHotelsTest {
         //    Suppose each 'Hotel' extends 'Site' or has similar fields.
         //    Just ensure getPricePerNight() and getPosition() are valid.
         List<Hotel> hotels = new ArrayList<>();
-        hotels.add(new Hotel("1",
+        hotels.add(new Hotel(1,
                 "Taharu'u Guest House By The Beach",
                 "PK 38,8 C/mer, Lotissement Pitate, Papara, 98712 Papara, Polynésie française",
                 1,
@@ -65,7 +65,7 @@ public class SelectHotelsTest {
                 "black sand beach",
                 149
         ));  // Under price, near Museum
-        hotels.add(new Hotel("2",
+        hotels.add(new Hotel(2,
                 "Tahiti Natura Lodge",
                 "Tahiti Faaa Pamatai Hauaiti iti, 98704 Fa'a'ā, Polynésie française",
                 1,
@@ -75,7 +75,7 @@ public class SelectHotelsTest {
                 "natura beach",
                 69
         ));  // Under price
-        hotels.add(new Hotel("3",
+        hotels.add(new Hotel(3,
                 "Fare purau",
                 "Atimaono pk 40,800 côté mer, 98712 Papara, Polynésie française",
                 1,
