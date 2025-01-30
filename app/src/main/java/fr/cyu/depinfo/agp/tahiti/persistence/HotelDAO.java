@@ -32,33 +32,36 @@ public class HotelDAO implements HotelDAOInterface {
     }
 
     @Override
-    public List<Location> searchByPrice(int minPrice, int maxPrice) {
-
+    public List<Hotel> searchByPrice(int minPrice, int maxPrice) {
         String query = String.format("SELECT * FROM hotel WHERE pricePerNight >= %d AND pricePerNight <= %d", minPrice, maxPrice);
 
         return executeQuery(query);
     }
 
     @Override
-    public List<Location> searchByConfort(int confortLevel) {
-        return List.of();
+    public List<Hotel> searchByConfort(int confortLevel) {
+        String query = "";
+
+        return executeQuery(query);
     }
 
     @Override
-    public List<Location> searchByIsland(String island) {
-        return List.of();
+    public List<Hotel> searchByIsland(String island) {
+        String query = String.format("SELECT hotel.* FROM hotel, island WHERE island.id = hotel.islandId AND island.name = '%s'", island);
+
+        return executeQuery(query);
     }
 
     @Override
-    public List<Location> searchByRating(int rate) {
+    public List<Hotel> searchByRating(int rate) {
         String query = String.format("SELECT * FROM hotel WHERE rating >= %d", rate);
 
         return executeQuery(query);
     }
 
-    private List<Location> createListResult(ExecutionPlan executionPlan) {
+    private List<Hotel> createListResult(ExecutionPlan executionPlan) {
         Map<String, Object> result;
-        ArrayList<Location> results = new ArrayList<>();
+        ArrayList<Hotel> results = new ArrayList<>();
 
         while ((result = executionPlan.next()) != null) {
             int pricePerNight = (int) result.get("pricepernight");
@@ -83,7 +86,7 @@ public class HotelDAO implements HotelDAOInterface {
         return results;
     }
 
-    private List<Location> executeQuery(String query) {
+    private List<Hotel> executeQuery(String query) {
         ExecutionPlan executionPlan = bdeAPI.query(query);
         return createListResult(executionPlan);
     }

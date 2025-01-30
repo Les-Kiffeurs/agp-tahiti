@@ -25,18 +25,16 @@ class HotelDAOTest {
         int minPrice = 100;
         int maxPrice = 200;
 
-        List<Location> results =  hotelDAO.searchByPrice(minPrice, maxPrice);
+        List<Hotel> results =  hotelDAO.searchByPrice(minPrice, maxPrice);
 
         assertNotNull(results);
 
-        for (Location result : results) {
+        for (Hotel result : results) {
             assertNotNull(result);
             assertTrue(result instanceof Hotel);
-
-            Hotel hotel = (Hotel) result;
-            System.out.println(hotel);
-            assertTrue(hotel.getPricePerNight() >= minPrice);
-            assertTrue(hotel.getPricePerNight() <= maxPrice);
+            System.out.println(result);
+            assertTrue(result.getPricePerNight() >= minPrice);
+            assertTrue(result.getPricePerNight() <= maxPrice);
 
         }
 
