@@ -3,15 +3,18 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene;
 import java.io.*;
 import java.nio.file.*;
 
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.apache.lucene.analysis.*;
 import org.apache.lucene.analysis.standard.*;
 import org.apache.lucene.document.*;
 import org.apache.lucene.index.*;
 import org.apache.lucene.store.*;
+import org.springframework.stereotype.Component;
 
 
 import java.io.IOException;
 
+@Component
 public class IndexHandler {
 
     private IndexWriter indexWriter;

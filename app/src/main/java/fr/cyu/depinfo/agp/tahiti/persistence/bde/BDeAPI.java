@@ -1,23 +1,18 @@
 package fr.cyu.depinfo.agp.tahiti.persistence.bde;
 
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.LuceneFacade;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
+@Component
 public class BDeAPI {
-    private static BDeAPI instance;
-    private LuceneFacade luceneFacade =  new LuceneFacade();
-    private QueryBuilder queryBuilder = new QueryBuilder();
-
-    private BDeAPI() {}
-
-    public static synchronized BDeAPI getInstance() {
-        if (instance == null) {
-            instance = new BDeAPI();
-        }
-        return instance;
-    }
+    private LuceneFacade luceneFacade;
+    private QueryBuilder queryBuilder;
 
     public void setTextSearchInfo(String tableName, String key, String path) {
         luceneFacade.setSrcFilePath(path);
@@ -46,6 +41,7 @@ public class BDeAPI {
         return luceneFacade;
     }
 
+    @Autowired
     public void setLuceneFacade(LuceneFacade luceneFacade) {
         this.luceneFacade = luceneFacade;
     }
@@ -54,6 +50,7 @@ public class BDeAPI {
         return queryBuilder;
     }
 
+    @Autowired
     public void setQueryBuilder(QueryBuilder queryBuilder) {
         this.queryBuilder = queryBuilder;
     }

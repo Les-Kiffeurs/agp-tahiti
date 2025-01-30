@@ -12,7 +12,9 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SearchHandler {
 
     private static final int MAX_RESULTS = 100;
@@ -20,8 +22,6 @@ public class SearchHandler {
 
     private IndexSearcher searcher;
     private DirectoryReader ireader;
-
-    public SearchHandler() {}
 
     public TopDocs search(String query) {
 
