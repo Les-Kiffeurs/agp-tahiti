@@ -20,6 +20,12 @@ public class JoinOperator extends AbstractComplexOperator{
     }
 
     @Override
+    public void executeQuery() {
+        getLeftOperator().executeQuery();
+        getRightOperator().executeQuery();
+    }
+
+    @Override
     public Map<String, Object> next() {
         Map<String, Object> map = null;
         Map<String, Object> nextLeftResult;

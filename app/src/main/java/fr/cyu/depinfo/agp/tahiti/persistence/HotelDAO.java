@@ -88,6 +88,7 @@ public class HotelDAO implements HotelDAOInterface {
 
     private List<Hotel> executeQuery(String query) {
         ExecutionPlan executionPlan = bdeAPI.query(query);
+        executionPlan.executeQuery();
         return createListResult(executionPlan);
     }
 }

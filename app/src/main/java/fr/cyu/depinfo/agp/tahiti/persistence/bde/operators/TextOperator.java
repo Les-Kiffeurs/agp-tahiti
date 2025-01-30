@@ -13,11 +13,22 @@ public class TextOperator extends AbstractFinalOperator{
     private TopDocs topDocs;
     private List<Map<String, Object>> docs;
     private Iterator<Map<String, Object>> iter;
+    private String keyColumnName;
 
     public TextOperator(String query, String keyColumnName) {
         super(query);
+        this.keyColumnName = keyColumnName;
+    }
+
+    @Override
+    public void init() {
+        iter = docs.iterator();
+    }
+
+    @Override
+    public void executeQuery() {
         LuceneFacade luceneFacade = BDeAPI.getInstance().getLuceneFacade();
-        topDocs = luceneFacade.search(query);
+        topDocs = luceneFacade.search(getQuery());
 
         docs = new ArrayList<>();
 
@@ -30,14 +41,6 @@ public class TextOperator extends AbstractFinalOperator{
             docs.add(map);
         }
 
-        iter = docs.iterator();
-
-        System.out.println("ok");
-
-    }
-
-    @Override
-    public void init() {
         iter = docs.iterator();
     }
 
