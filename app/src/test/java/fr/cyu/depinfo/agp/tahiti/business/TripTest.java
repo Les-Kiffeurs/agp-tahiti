@@ -15,7 +15,7 @@ class TripTest {
         Transport fiveKpHTransportMode = new Transport("5KpHTransport", 0, 5/3.6f);
 
         Trip t = new Trip(h1, h2).setTransportMode(fiveKpHTransportMode);
-        assertTrue(t.duration().getSeconds() >= 7200 - 100 && t.duration().getSeconds() <= 7200 + 100);
+        assertEquals(7200, t.duration().getSeconds(), 100);
     }
 
     @Test
