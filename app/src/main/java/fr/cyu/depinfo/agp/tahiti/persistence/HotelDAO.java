@@ -7,6 +7,7 @@ import fr.cyu.depinfo.agp.tahiti.business.locations.Rank;
 import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,12 +15,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component("hotelDAO")
 public class HotelDAO implements HotelDAOInterface {
 
-    private final BDeAPI bdeAPI;
+    private BDeAPI bdeAPI = BDeAPI.getInstance();
+
+    public BDeAPI getBdeAPI() {
+        return bdeAPI;
+    }
+
+    public void setBdeAPI(BDeAPI bdeAPI) {
+        this.bdeAPI = bdeAPI;
+    }
 
     public HotelDAO() {
-        this.bdeAPI = BDeAPI.getInstance();
     }
 
     @Override

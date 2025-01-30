@@ -10,6 +10,7 @@ public class Offer {
     private final Destination destination;
     private final Map<Date, Excursion> excursions = new HashMap<>();
     private float score;
+    private double price;
 
     public Offer(Date arrivalDate, Date departureDate, Destination destination) {
         this.arrivalDate = arrivalDate;
@@ -49,5 +50,13 @@ public class Offer {
     public Offer setScore(float score) {
         this.score = score;
         return this;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
