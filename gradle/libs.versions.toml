@@ -11,6 +11,7 @@ mockito = "5.15.2"
 hibernate = "6.6.5.Final"
 log4j = "2.12.4"
 jackson = "2.18.2"
+jstl = "3.0.0"
 
 [libraries]
 lucene-core = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
@@ -48,6 +49,7 @@ log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.
 log4j-api = { group = "org.apache.logging.log4j", name = "log4j-api", version.ref = "log4j" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 jackson-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jackson" }
+jstl = { group = "org.glassfish.web", name = "jakarta.servlet.jsp.jstl", version.ref = "jstl" }
 
 [bundles]
 spring = ["spring-aop",
