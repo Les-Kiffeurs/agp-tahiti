@@ -51,6 +51,7 @@ public class SiteDAO implements SiteDAOInterface {
     private List<Site> createListResult(ExecutionPlan executionPlan) {
         Map<String, Object> result;
         ArrayList<Site> results = new ArrayList<>();
+        HashMap<Float, Site> resultBeforeSort = new HashMap<>();
 
         while ((result = executionPlan.next()) != null) {
             int price = (int) result.get("price");
@@ -65,11 +66,19 @@ public class SiteDAO implements SiteDAOInterface {
             String address = (String) result.get("address");
             int intensity = (int) result.get("intensity");
 
-
-
             Site site = new Site(id, name, address, islandId, rating, type, price, intensity, pos);
 
-            results.add(site);
+            if (result.get("score") != null) {
+                resultBeforeSort.put((Float) result.get("score"), site);
+            } else {
+                results.add(site);
+            }
+        }
+
+        if (!resultBeforeSort.isEmpty()) {
+            resultBeforeSort.entrySet().stream()
+                    .sorted(Map.Entry.<Float, Site>comparingByKey().reversed())
+                    .forEach(entry -> results.add(entry.getValue()));
         }
 
         return results;

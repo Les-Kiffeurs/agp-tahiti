@@ -18,6 +18,9 @@ public class IndexHandler {
     private Path indexPath;
 
     public void createIndex(String destPath) {
+
+        deleteExistingIndex(destPath);
+
         try {
             indexPath = FileSystems.getDefault().getPath(destPath);
             File lockFile = new File(indexPath.toFile(), "write.lock");
@@ -31,6 +34,20 @@ public class IndexHandler {
             indexWriter = new IndexWriter(index, config);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void deleteExistingIndex(String destPath) {
+        Path indexDir = Paths.get(destPath);
+        if (Files.exists(indexDir) && Files.isDirectory(indexDir)) {
+            try {
+                Files.walk(indexDir)
+                        .map(Path::toFile)
+                        .sorted((o1, o2) -> -o1.compareTo(o2)) // Supprime les fichiers avant les dossiers
+                        .forEach(File::delete);
+            } catch (IOException e) {
+                throw new RuntimeException("Erreur lors de la suppression de l'index existant", e);
+            }
         }
     }
 
