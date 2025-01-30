@@ -22,9 +22,7 @@ class SQLOperatorTest {
     @Test
     void testNext(){
 
-        sqloperator.init();
-
-        Map<String, String> result = sqloperator.next();
+        Map<String, Object> result = sqloperator.next();
 
         assertNotNull(result);
         assertTrue(result.containsKey("name"));

@@ -5,5 +5,5 @@ import java.util.Map;
 public interface OperatorInterface {
 
     void init();
-    Map<String, String> next();
+    Map<String, Object> next();
 }

@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class BDeAPI {
     private static BDeAPI instance;
-    private LuceneFacade luceneFacade;
-    private QueryBuilder queryBuilder;
+    private LuceneFacade luceneFacade =  new LuceneFacade();
+    private QueryBuilder queryBuilder = new QueryBuilder();
 
     private BDeAPI() {}
 

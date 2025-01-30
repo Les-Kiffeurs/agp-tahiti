@@ -27,9 +27,7 @@
     </header>
 
     <main>
-        <form action="simple-search.jsp" method="get" class="search-form">
-            <label for="search-keyword">Keyword:</label>
-            <input type="text" id="search-keyword" name="keyword" placeholder="Enter a keyword (e.g., beach, spa, hiking)">
+        <form action="simple-search-result.jsp" method="get" class="search-form">
 
             <label for="search-price">Price Range (e.g., 100-500):</label>
             <input type="text" id="search-price" name="price" placeholder="Enter a price range">
@@ -41,25 +39,9 @@
         </form>
 
         <section class="search-results">
-            <h2>Results</h2>
-            <%
-                String keyword = request.getParameter("keyword");
-                String  priceRange = request.getParameter("price");
-                String comfortLevel = request.getParameter("comfort");
-
-                if (keyword != null && priceRange != null && comfortLevel != null) {
-            %>
-            <p>
-                <strong>Keyword:</strong> <%= !keyword.isEmpty() ? keyword : "None" %><br>
-                <strong>Price Range:</strong> <%= !priceRange.isEmpty() ? priceRange : "None" %><br>
-                <strong>Comfort Level:</strong> <%= !comfortLevel.isEmpty() ? comfortLevel : "None" %>
-            </p>
-            <%
-            } else {
-            %>
             <p>Your search results will appear here.</p>
             <%
-                }
+
             %>
         </section>
     </main>

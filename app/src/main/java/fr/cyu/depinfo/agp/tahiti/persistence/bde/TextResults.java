@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 
-public class TextResults implements Iterator<Map<Integer, Integer>> {
+public class TextResults implements Iterator<Map<String, Integer>> {
 
-    private List<Map<Integer, Integer>> results;
+    private List<Map<String, Integer>> results;
     private int index;
 
     @Override
@@ -15,7 +15,7 @@ public class TextResults implements Iterator<Map<Integer, Integer>> {
     }
 
     @Override
-    public Map<Integer, Integer> next() {
+    public Map<String, Integer> next() {
         return Map.of();
     }
 }

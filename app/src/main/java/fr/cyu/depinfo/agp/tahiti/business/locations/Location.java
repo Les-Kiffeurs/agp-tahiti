@@ -1,14 +1,14 @@
 package fr.cyu.depinfo.agp.tahiti.business.locations;
 
 public abstract class Location {
-    private String id;
+    private int id;
     private String name;
     private String address;
     private int islandId;
     private float rating;
     final Position position;
 
-    public Location(String id, String name, String address, int islandId, float rating, Position position) {
+    public Location(int id, String name, String address, int islandId, float rating, Position position) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -16,11 +16,11 @@ public abstract class Location {
         this.rating = rating;
         this.position = position;
     }
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public Location setId(String id) {
+    public Location setId(int id) {
         this.id = id;
         return this;
     }
@@ -67,5 +67,17 @@ public abstract class Location {
 
     public double distanceFrom(Location location) {
        return this.position.distanceFrom(location.position);
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", islandId=" + islandId +
+                ", rating=" + rating +
+                ", position=" + position +
+                '}';
     }
 }

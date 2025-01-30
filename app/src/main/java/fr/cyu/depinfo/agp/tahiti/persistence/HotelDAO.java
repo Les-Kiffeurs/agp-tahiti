@@ -8,6 +8,7 @@ import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,8 @@ public class HotelDAO implements HotelDAOInterface {
 
     private final BDeAPI bdeAPI;
 
-    public HotelDAO(BDeAPI bdeAPI) {
-        this.bdeAPI = bdeAPI;
+    public HotelDAO() {
+        this.bdeAPI = BDeAPI.getInstance();
     }
 
     @Override
@@ -47,21 +48,21 @@ public class HotelDAO implements HotelDAOInterface {
     }
 
     private List<Location> createListResult(ExecutionPlan executionPlan) {
-        Map<String, String> result;
+        Map<String, Object> result;
         ArrayList<Location> results = new ArrayList<>();
 
         while ((result = executionPlan.next()) != null) {
-            int pricePerNight = Integer.parseInt(result.get("pricepernight"));
-            String name = result.get("name");
-            String id = result.get("id");
-            double latitude = Double.parseDouble(result.get("latitude"));
-            double longitude = Double.parseDouble(result.get("longitude"));
+            int pricePerNight = (int) result.get("pricepernight");
+            String name = (String) result.get("name");
+            int id = (int) result.get("id");
+            double latitude = ((BigDecimal) result.get("latitude")).doubleValue();
+            double longitude = ((BigDecimal) result.get("longitude")).doubleValue();
             Position pos = new Position(latitude, longitude);
-            String beach = result.get("beach");
-            int islandId = Integer.parseInt(result.get("islandid"));
-            float rating = Float.parseFloat(result.get("rating"));
-            String address = result.get("address");
-            String rank = result.get("rank");
+            String beach = (String) result.get("beach");
+            int islandId = (int) result.get("islandid");
+            float rating = (Float) result.get("rating");
+            String address = (String) result.get("address");
+            String rank = (String) result.get("rank");
 
 
 
@@ -75,9 +76,6 @@ public class HotelDAO implements HotelDAOInterface {
 
     private List<Location> executeQuery(String query) {
         ExecutionPlan executionPlan = bdeAPI.query(query);
-
-        executionPlan.init();
-
         return createListResult(executionPlan);
     }
 }

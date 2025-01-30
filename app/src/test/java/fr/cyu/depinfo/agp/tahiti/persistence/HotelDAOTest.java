@@ -17,8 +17,7 @@ class HotelDAOTest {
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-        BDeAPI bDeAPI = BDeAPI.getInstance();
-        hotelDAO = new HotelDAO(bDeAPI);
+        hotelDAO = new HotelDAO();
     }
 
     @Test
@@ -35,6 +34,7 @@ class HotelDAOTest {
             assertTrue(result instanceof Hotel);
 
             Hotel hotel = (Hotel) result;
+            System.out.println(hotel);
             assertTrue(hotel.getPricePerNight() >= minPrice);
             assertTrue(hotel.getPricePerNight() <= maxPrice);
 

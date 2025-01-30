@@ -16,7 +16,7 @@ public class SQLOperator extends AbstractFinalOperator{
     public SQLOperator(String query) {
         super(query);
         try {
-            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery());
+            PreparedStatement ps = JdbcConnection.getConnection().prepareStatement(getQuery(),ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             resultSet = ps.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -33,9 +33,9 @@ public class SQLOperator extends AbstractFinalOperator{
     }
 
     @Override
-    public Map<String, String> next() {
+    public Map<String, Object> next() {
         ResultSetMetaData metaData = null;
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, Object> map = new HashMap<String, Object>();
         int colCount;
 
         try {
@@ -47,7 +47,7 @@ public class SQLOperator extends AbstractFinalOperator{
 
             for (int i = 1; i <= colCount; i++) {
                 String columnName = metaData.getColumnName(i);
-                String columnValue = resultSet.getString(i);
+                Object columnValue = resultSet.getObject(i);
                 map.put(columnName, columnValue);
             }
 

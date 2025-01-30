@@ -4,6 +4,9 @@ import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.JoinOperator;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.SQLOperator;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.TextOperator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QueryBuilder {
 
     private ExecutionPlan executionPlan;
@@ -35,22 +38,60 @@ public class QueryBuilder {
     private void mixedQueryCreation(String query) {
         String[] queryParts = query.split("with");
 
-        String SQLQuery = makeSQLQuery(queryParts[0]);
+        ArrayList<String> SQLQuery = makeSQLQuery(queryParts[0]);
 
-        SQLOperator sqlOperator = new SQLOperator(SQLQuery);
+        SQLOperator sqlOperator = new SQLOperator(SQLQuery.get(1));
 
-        TextOperator textOperator = new TextOperator(queryParts[1]);
+        TextOperator textOperator = new TextOperator(queryParts[1], keyColumnName);
 
-        JoinOperator joinOperator = new JoinOperator(sqlOperator, textOperator, keyColumnName, null);
+        List<String> finalAttributes = new ArrayList<String>();
+        for (String attribute : SQLQuery.getFirst().split(",")) {
+            finalAttributes.add(attribute.trim());
+        }
+        JoinOperator joinOperator = new JoinOperator(sqlOperator, textOperator, keyColumnName, finalAttributes);
 
         executionPlan = new ExecutionPlan(joinOperator);
     }
 
-    private String makeSQLQuery(String queryPart) {
-        String whereClause = queryPart.split("WHERE")[1];
+        private ArrayList<String> makeSQLQuery(String queryPart) {
+
+        String whereClause = null;
+        if (queryPart.contains("WHERE")){
+            whereClause = queryPart.split("WHERE")[1];
+        }
+
         String fromClause = queryPart.split("WHERE")[0].split("FROM")[1];
         String selectClause = queryPart.split("FROM")[0].split("SELECT")[1];
-        return whereClause + " " + fromClause + " " + selectClause;
+
+        ArrayList<String> result = new ArrayList<String>();
+
+        result.add(selectClause);
+
+        if(!fromClause.contains(tableName)){
+
+            String table = fromClause.trim();
+
+            fromClause += ", " + tableName;
+
+            if (whereClause != null) {
+                whereClause += " AND " + tableName + "." + keyColumnName + "=" + table + "." + keyColumnName ;
+            }
+            else {
+                whereClause = tableName + "." + keyColumnName + "=" + table + "." + keyColumnName ;
+            }
+        }
+
+        if (!selectClause.contains(keyColumnName) && !selectClause.contains("*")){
+            selectClause += ", " + keyColumnName;
+        }
+
+        String newQuery = "SELECT " + selectClause.trim() +  " FROM " + fromClause.trim();
+        if (whereClause != null){
+            newQuery += " WHERE " + whereClause;
+        }
+
+        result.add(newQuery);
+        return result;
     }
 
     private void SQLQueryCreation(String query){

@@ -6,14 +6,13 @@ lucene = "10.1.0"
 postgres = "42.7.5"
 spring-framework = "6.2.2"
 lombok = "1.18.36"
-mockito = "5.15.2"
 jakarta = "10.0.0"
-mockito = "1.10.19"
-hibernate = "5.6.9.Final"
+mockito = "5.15.2"
+hibernate = "6.6.5.Final"
+log4j = "2.12.4"
+jackson = "2.18.2"
 
 [libraries]
-hibernate = { group = "org.hibernate", name = "hibernate-core", version.ref = "hibernate" }
-mockito = { group = "org.mockito", name = "mockito-all", version.ref = "mockito"}
 lucene-core = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
 lucene-queryparser = { group = "org.apache.lucene", name = "lucene-queryparser",  version.ref = "lucene" }
 postgres = { group = "org.postgresql", name = "postgresql", version.ref = "postgres" }
@@ -40,9 +39,15 @@ spring-web = { group = "org.springframework", name = "spring-web", version.ref =
 spring-webflux = { group = "org.springframework", name = "spring-webflux", version.ref = "spring-framework"}
 spring-webmvc = { group = "org.springframework", name = "spring-webmvc", version.ref = "spring-framework"}
 spring-websocket = { group = "org.springframework", name = "spring-websocket", version.ref = "spring-framework"}
+hibernate-core = { group = "org.hibernate.orm", name = "hibernate-core", version.ref = "hibernate" }
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito"}
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito"}
+mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito"}
 jakarta-web-api = {group = "jakarta.platform", name = "jakarta.jakartaee-web-api", version.ref = "jakarta"}
+log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "log4j" }
+log4j-api = { group = "org.apache.logging.log4j", name = "log4j-api", version.ref = "log4j" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
+jackson-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jackson" }
 
 [bundles]
 spring = ["spring-aop",
@@ -70,4 +75,8 @@ spring = ["spring-aop",
     "spring-websocket"]
 lucene = ["lucene-core",
     "lucene-queryparser"]
+hibernate = ["hibernate-core"]
 jakarta = ["jakarta-web-api"]
+mockito = ["mockito-core", "mockito-junit"]
+log4j = ["log4j-core", "log4j-api"]
+jackson = ["jackson-databind", "jackson-yaml"]

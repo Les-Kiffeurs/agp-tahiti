@@ -1,70 +1,39 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mathi
-  Date: 28/01/2025
-  Time: 06:56
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
-<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
+<%@ page import="fr.cyu.depinfo.agp.tahiti.beans.EntriesBeans" %>
+<%@ page import="fr.cyu.depinfo.agp.tahiti.business.locations.Location" %>
+<%@ page import="java.util.List" %>
+<%@ page import="fr.cyu.depinfo.agp.tahiti.persistence.HotelDAO" %>
+<%@ page import="fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface" %>
+<%@ page import="fr.cyu.depinfo.agp.tahiti.business.locations.Hotel" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
-<f:view>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Search Results</title>
-    <link rel="stylesheet" href="resources/css/simple-search.css">
-  </head>
-  <body>
-  <a href="index.jsp" class="return-home">Back to Main Menu</a>
+<jsp:useBean id="resultBean"
+             class="fr.cyu.depinfo.agp.tahiti.beans.ResultBean"
+             scope="session" />
+<jsp:setProperty name="resultBean" property="*" />
 
-  <div class="container">
-    <header>
-      <h1>Simple Search Results</h1>
-      <p>You searched for: <strong><%= request.getParameter("keyword") %></strong></p>
-    </header>
+<%
+  String priceStr = request.getParameter("price");
+  int minPrice = Integer.parseInt(priceStr.split("-")[0]);
+  int maxPrice = Integer.parseInt(priceStr.split("-")[1]);
+  HotelDAOInterface hotelDAO = new HotelDAO();
+  List<Location> hotels = hotelDAO.searchByPrice(minPrice, maxPrice);
+%>
 
-    <main>
-      <section class="search-results">
-        <h2>Results</h2>
+<html>
+<head>
+  <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
 
-        <c:choose>
-          <c:when test="${empty simpleBean.searchResults}">
-            <p>No results found for your query.</p>
-          </c:when>
-          <c:otherwise>
-            <table border="1">
-              <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
+<div>
+  <p>Hello</p>
+  <% for (Location loc : hotels) { %>
+<p> <%=loc.getName()%> </p>
+  <% } %>
+  <p>World</p>
+</div>
 
-              </tr>
-              </thead>
-              <tbody>
-              <c:forEach items="${simpleBean.searchResults}" var="result">
-                <tr>
-                  <td>${result.name}</td>
-                  <td>${result.type}</td>
-                  <td>${result.description}</td>
-
-                </tr>
-              </c:forEach>
-              </tbody>
-            </table>
-          </c:otherwise>
-        </c:choose>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2025 Tahiti Trip Planner. All Rights Reserved.</p>
-    </footer>
-  </div>
-  </body>
-  </html>
-</f:view>
+<a href="index.jsp">Back to Main Menu</a>
+</body>
+</html>
