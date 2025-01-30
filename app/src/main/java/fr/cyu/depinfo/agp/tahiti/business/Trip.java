@@ -43,8 +43,7 @@ public class Trip {
     }
 
     public double getPrice() {
-        this.price = travelDistance()/1000f * transportMode.getPricePerKm();
-        return price;
+        return travelDistance()/1000f * transportMode.getPricePerKm();
     }
 
     public Trip setTransportMode(Transport transportMode) {
