@@ -33,7 +33,6 @@ public class SiteDAO implements SiteDAOInterface {
     public List<Site> searchByKeyword(String keywords) {
         String query = String.format("SELECT * FROM site with %s", keywords);
 
-
         return executeQuery(query);
     }
 
