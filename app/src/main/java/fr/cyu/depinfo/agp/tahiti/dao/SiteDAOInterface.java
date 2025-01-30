@@ -2,14 +2,15 @@ package fr.cyu.depinfo.agp.tahiti.dao;
 
 import fr.cyu.depinfo.agp.tahiti.business.locations.Location;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Position;
+import fr.cyu.depinfo.agp.tahiti.business.locations.Site;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public interface SiteDAOInterface extends SimpleSearchDAOInterface {
+public interface SiteDAOInterface extends SimpleSearchDAOInterface<Site> {
 
-    List<Location> searchByKeyword(String keyword);
+    List<Site> searchByKeyword(String keyword);
 
-    List<Location> searchByType(String type);
+    List<Site> searchByType(String type);
 }
