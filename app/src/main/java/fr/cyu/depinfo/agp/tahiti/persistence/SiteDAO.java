@@ -28,6 +28,12 @@ public class SiteDAO implements SiteDAOInterface {
     }
 
     @Override
+    public List<Site> getAllActivities() {
+        String query = "SELECT * FROM site";
+        return executeQuery(query);
+    }
+
+    @Override
     public List<Site> searchByKeyword(String keywords) {
         String query = String.format("SELECT * FROM site with %s", keywords);
 

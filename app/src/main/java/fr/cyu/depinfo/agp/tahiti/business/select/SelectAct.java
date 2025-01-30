@@ -2,6 +2,7 @@ package fr.cyu.depinfo.agp.tahiti.business.select;
 
 import fr.cyu.depinfo.agp.tahiti.business.locations.Site;
 import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
+import fr.cyu.depinfo.agp.tahiti.persistence.SiteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
@@ -45,12 +46,14 @@ public class SelectAct {
 
     public List<Site> fillAct(List<Site> activities, int nbActMax) {
         Map<Integer, Site> siteMap = new HashMap<>();
-        for (Site site : activities) {
+        List<Site> allSites = new SiteDAO().getAllActivities();
+
+        for (Site site : allSites) {
             siteMap.put(site.getId(), site);
         }
 
         while (activities.size() < nbActMax) {
-            int id = (int) (Math.random() * (4 - 1)) + 1;
+            int id = (int) (Math.random() * (activities.size() - 1)) + 1;
             activities.add(siteMap.get(id));
         }
         return activities;
