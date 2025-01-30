@@ -60,7 +60,7 @@ public class SelectAct {
     }
 
 
-    public List<Site> SelectAct(List<Site> activities, int prix, int duration, int comfort) {
+    public List<Site> selectAct(List<Site> activities, int prix, int duration, int comfort) {
         int nbActMax = nbActMax(duration,comfort);
         if(activities.size() < nbActMax){
             activities = fillAct(activities, nbActMax);

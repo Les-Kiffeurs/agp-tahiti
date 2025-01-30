@@ -63,7 +63,7 @@ public class SelectActTest {
         // The getActivities(...) in your code returns 2 dummy activities by default.
         // We want to see if fillAct(...) gets called if nbActMax > 2
         List<Site> activities = new ArrayList<>();
-        List<Site> selected = selectAct.SelectAct(activities, prix, duration, comfort);
+        List<Site> selected = selectAct.selectAct(activities, prix, duration, comfort);
 
         // The method returns either exactly the random number of activities
         // (and if that is >2, we see filler ones).
@@ -95,7 +95,7 @@ public class SelectActTest {
         int duration = 2;
         List<String> keywords = new ArrayList<>();
 
-        List<Site> selected = selectAct.SelectAct(prix, duration, comfort, keywords);
+        List<Site> selected = selectAct.selectAct(prix, duration, comfort, keywords);
         assertNotNull(selected, "Activity list should not be null");
         assertFalse(selected.isEmpty(), "Should return at least one activity");
 

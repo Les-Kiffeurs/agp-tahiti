@@ -65,7 +65,7 @@ public class OfferDetailServlet extends HttpServlet {
         duree.setDepartureDate(java.sql.Date.valueOf(arrivalDate));
 
         for (int i = 0; i < 10; i++) {
-            List<Site> sites = selectAct.SelectAct(activities, maxPrice, daysBetween, comfortLevel);
+            List<Site> sites = selectAct.selectAct(activities, maxPrice, daysBetween, comfortLevel);
             sites = sites.stream().filter(Objects::nonNull).collect(Collectors.toList());
             List<Hotel> hotels = selectHotel.selectHotels(sites, allHotels, maxPrice, numberOfHotels, comfortLevel, daysBetween);
 
