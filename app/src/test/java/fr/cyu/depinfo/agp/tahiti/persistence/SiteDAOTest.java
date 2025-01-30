@@ -51,7 +51,7 @@ class SiteDAOTest {
             e.printStackTrace();
         }
 
-        siteDAO.getBdeAPI().setTextSearchInfo("activity", "id", TEST_DIR);
+        siteDAO.getBdeAPI().setTextSearchInfo("site", "id", TEST_DIR);
         siteDAO.getBdeAPI().createTextIndex(TEST_DIR_INDEX);
     }
 

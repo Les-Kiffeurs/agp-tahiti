@@ -33,7 +33,7 @@ public class HotelDAO implements HotelDAOInterface {
 
     @Override
     public List<Hotel> searchByPrice(int minPrice, int maxPrice) {
-        String query = String.format("SELECT * FROM hotel WHERE pricePerNight >= %d AND pricePerNight <= %d", minPrice, maxPrice);
+        String query = String.format("SELECT * FROM hotel WHERE price_per_night >= %d AND price_per_night <= %d", minPrice, maxPrice);
 
         return executeQuery(query);
     }
@@ -47,7 +47,7 @@ public class HotelDAO implements HotelDAOInterface {
 
     @Override
     public List<Hotel> searchByIsland(String island) {
-        String query = String.format("SELECT hotel.* FROM hotel, island WHERE island.id = hotel.islandId AND island.name = '%s'", island);
+        String query = String.format("SELECT hotel.* FROM hotel, island WHERE island.id = hotel.island_id AND island.name = '%s'", island);
 
         return executeQuery(query);
     }
@@ -64,14 +64,14 @@ public class HotelDAO implements HotelDAOInterface {
         ArrayList<Hotel> results = new ArrayList<>();
 
         while ((result = executionPlan.next()) != null) {
-            int pricePerNight = (int) result.get("pricepernight");
+            int pricePerNight = (int) result.get("price_per_night");
             String name = (String) result.get("name");
             int id = (int) result.get("id");
-            double latitude = ((BigDecimal) result.get("latitude")).doubleValue();
-            double longitude = ((BigDecimal) result.get("longitude")).doubleValue();
+            double latitude = ((Float) result.get("latitude")).doubleValue();
+            double longitude = ((Float) result.get("longitude")).doubleValue();
             Position pos = new Position(latitude, longitude);
             String beach = (String) result.get("beach");
-            int islandId = (int) result.get("islandid");
+            int islandId = (int) result.get("island_id");
             float rating = (Float) result.get("rating");
             String address = (String) result.get("address");
             String rank = (String) result.get("rank");

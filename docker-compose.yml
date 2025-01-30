@@ -13,7 +13,7 @@ services:
     networks:
       - postgres-network
     volumes:
-      - ./script_db/initTest.sql:/docker-entrypoint-initdb.d/initTest.sql
+      - ./script_db/insert_db.sql:/docker-entrypoint-initdb.d/insert_db.sql
 
 networks:
   postgres-network:
