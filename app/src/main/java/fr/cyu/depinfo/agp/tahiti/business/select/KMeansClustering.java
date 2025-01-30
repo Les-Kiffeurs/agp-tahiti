@@ -89,11 +89,12 @@ public class KMeansClustering {
 
     public static List<Hotel> OneNN(List<Position> centroids, List<Hotel> hotels) {
         List<Hotel> bestHotels = new ArrayList<>();
+        List<Hotel> availableHotels = new ArrayList<>(hotels);
         for (Position centroid : centroids) {
             double minDist = Double.MAX_VALUE;
             Hotel bestHotelForThisCentroid = null;
 
-            for (Hotel hotel : hotels) {
+            for (Hotel hotel : availableHotels) {
                 double dist = centroid.distanceFrom(hotel.getPosition());
                 if (dist < minDist) {
                     minDist = dist;
@@ -102,6 +103,8 @@ public class KMeansClustering {
             }
             if (bestHotelForThisCentroid != null) {
                 bestHotels.add(bestHotelForThisCentroid);
+                // sinon il retourne le même hotel
+                availableHotels.remove(bestHotelForThisCentroid);
             }
         }
         return bestHotels;
