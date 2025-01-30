@@ -21,7 +21,7 @@ public class FindSejourTest {
         // 1) Prepare test data
 
         // Create a single hotel
-        Hotel hotelA = new Hotel("1",
+        Hotel hotelA = new Hotel(1,
                 "Taharu'u Guest House By The Beach",
                 "PK 38,8 C/mer, Lotissement Pitate, Papara, 98712 Papara, Polynésie française",
                 1,
@@ -33,7 +33,7 @@ public class FindSejourTest {
         );
 
         // Create a few mock locations for the single hotel
-        Location beach = new Site("Beach",
+        Location beach = new Site(2,
                 "Tahiti Safari Islander",
                 "Papeete, Polynésie française, 98714",
                 1,
@@ -43,7 +43,7 @@ public class FindSejourTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
                 );
-        Location museum = new Site("museum",
+        Location museum = new Site(3,
                 "École De Surf Tura'i Mataare",
                 "Punaauia, Polynésie française, 98718",
                 1,
@@ -53,7 +53,7 @@ public class FindSejourTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
         );
-        Location temple = new Site("temple",
+        Location temple = new Site(4,
                 "Tahiti Limousine - Service Vip",
                 "Papeete, Polynésie française, 98714",
                 1,
@@ -63,7 +63,7 @@ public class FindSejourTest {
                 2,
                 new Position(-17.5324608,-149.5677151)
         );
-        Location snorkeling =new Site("Snorkeling",
+        Location snorkeling =new Site(5,
                 "Centre Equestre L'Eperon",
                 "Pirae, 98716",
                 1,
@@ -146,6 +146,7 @@ public class FindSejourTest {
             System.out.println("      Trips:");
 
             for (Trip trip: excursion.getSites()) {
+                System.out.println("PRice of the trip");
                 System.out.println("Departure        - " + trip.getDeparture().getName());
                 System.out.println("Destination      - " + trip.getDestination().getName());
             }
