@@ -20,7 +20,6 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation(libs.bundles.lucene)
-    implementation(libs.postgres)
     implementation(libs.bundles.spring)
 
     compileOnly(libs.lombok)
@@ -34,6 +33,8 @@ dependencies {
 
     implementation(libs.bundles.log4j)
     implementation(libs.bundles.jackson)
+
+    implementation(libs.jstl)
 }
 
 testing {
