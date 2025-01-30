@@ -5,9 +5,7 @@ import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +42,17 @@ public class SiteDAO implements SiteDAOInterface {
     }
 
     @Override
+    public Site getSiteById(String id) {
+        String query = String.format("SELECT * FROM site WHERE id = %s", id);
+        List<Site> sites = this.executeQuery(query);
+        if (sites.isEmpty()) {
+            return null;
+        }
+        return sites.getFirst();
+
+    }
+
+    @Override
     public List<Site> searchByIsland(String island) {
         return List.of();
     }
@@ -76,6 +85,7 @@ public class SiteDAO implements SiteDAOInterface {
     }
 
     private List<Site> executeQuery(String query) {
+        System.out.println(query);
         ExecutionPlan executionPlan = bdeAPI.query(query);
         executionPlan.executeQuery();
         return createListResult(executionPlan);
