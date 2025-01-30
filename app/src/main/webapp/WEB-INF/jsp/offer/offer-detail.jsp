@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,25 +18,24 @@
 <c:forEach var="offer" items="${offers}">
     <h2>Détails de l'Offre</h2>
     <div class="offer-details">
-        <p><strong>Destination :</strong> <%= offer.getDestination().getIslandName() %></p>
-        <p><strong>Prix total :</strong> <%= offer.getPrice() %> €</p>
+        <p><strong>Destination :</strong> ${offer.getDestination().getIslandName()}</p>
+        <p><strong>Prix total :</strong> <fmt:formatNumber value="${offer.getPrice()}" type="number" pattern="#0.00"/> €</p>
     </div>
 
     <h3>Excursions :</h3>
-    <c:forEach var="entry" items="${offer.excursions}">
+    <c:forEach var="excursion" items="${offer.getExcursions().values()}">
         <div class="excursion">
-            <p><strong>Date :</strong> ${entry.key}</p>
-            <c:set var="excursion" value="${entry.value}" />
-            <p><strong>Départ :</strong> ${excursion.departure.name}</p>
-            <p><strong>Destination :</strong> ${excursion.destination.name}</p>
+            <p><strong>Date :</strong> ${excursion.getDate()}</p>
+            <p><strong>Départ :</strong> ${excursion.getDeparture().getName()}</p>
+            <p><strong>Destination :</strong> ${excursion.getDestination().getName()}</p>
 
-            <h4>Trajets :</h4>
+            <h4>Trajets : ${excursion.getSites().size()}</h4>
             <ul>
-                <c:forEach var="trip" items="${excursion.sites}">
+                <c:forEach var="trip" items="${excursion.getSites()}">
                     <li>
-                        Prix : ${trip.price} €, Distance : ${trip.distance} km<br>
-                        Mode de transport : ${trip.transportMode}<br>
-                        Départ : ${trip.departure.name} → Destination : ${trip.destination.name}
+                        Prix : <fmt:formatNumber value="${trip.getPrice()}" type="number" pattern="#0.00"/> €<br>
+                        Mode de transport : ${trip.getTransportMode()}<br>
+                        Départ : ${trip.getDeparture().getName()} → Destination : ${trip.getDestination().getName()}
                     </li>
                 </c:forEach>
             </ul>

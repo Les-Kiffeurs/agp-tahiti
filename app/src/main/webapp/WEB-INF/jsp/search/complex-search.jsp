@@ -1,7 +1,5 @@
 <%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="entriesBean" class="fr.cyu.depinfo.agp.tahiti.beans.EntriesBeans" scope="session" />
-<jsp:setProperty name="entriesBean" property="*" />
 <!DOCTYPE html>
 <html lang="en">
 <head>

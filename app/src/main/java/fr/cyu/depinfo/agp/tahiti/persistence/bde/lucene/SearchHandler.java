@@ -81,8 +81,26 @@ public class SearchHandler {
     }
 
     public String parseQuery(String query) {
-        String finalQuery = query.replaceAll(" ", " OR ");
+
+        String fuzzyQuery = addFuzzyToWords(query);
+
+        String finalQuery = fuzzyQuery.replaceAll(" ", " OR ");
         return finalQuery;
+    }
+
+    private String addFuzzyToWords(String query) {
+        StringBuilder result = new StringBuilder();
+        String[] tokens = query.split("\\s+");
+
+        for (String token : tokens) {
+            if (!token.equals("") && !token.startsWith("\"") && !token.endsWith("\"")) {
+                result.append(token).append("~ "); // Ajouter "~" aux mots normaux
+            } else {
+                result.append(token).append(" "); // Garder les opérateurs intacts
+            }
+        }
+
+        return result.toString().trim();
     }
 
 }

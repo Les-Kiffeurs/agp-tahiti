@@ -49,8 +49,8 @@ public class SelectAct {
             siteMap.put(site.getId(), site);
         }
 
-        while(activities.size() < nbActMax) {
-            int id = (int) (Math.random() * (31 - 1)) + 1;
+        while (activities.size() < nbActMax) {
+            int id = (int) (Math.random() * (4 - 1)) + 1;
             activities.add(siteMap.get(id));
         }
         return activities;

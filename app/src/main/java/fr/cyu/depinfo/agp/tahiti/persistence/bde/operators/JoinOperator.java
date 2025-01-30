@@ -66,7 +66,7 @@ public class JoinOperator extends AbstractComplexOperator{
                 resultLine.put(attribute, rightResult.get(attribute));
             }
         }
-
+        resultLine.put("score", rightResult.getOrDefault("score", null));
         return resultLine;
     }
 }

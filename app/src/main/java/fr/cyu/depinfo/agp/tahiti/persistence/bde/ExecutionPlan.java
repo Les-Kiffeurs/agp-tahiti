@@ -5,7 +5,8 @@ import fr.cyu.depinfo.agp.tahiti.persistence.bde.operators.OperatorInterface;
 import java.util.Map;
 
 public class ExecutionPlan {
-    OperatorInterface topOperator;
+
+    private OperatorInterface topOperator;
 
     public ExecutionPlan(OperatorInterface topOperator) {
         this.topOperator = topOperator;

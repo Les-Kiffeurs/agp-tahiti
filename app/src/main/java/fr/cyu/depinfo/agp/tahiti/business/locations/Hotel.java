@@ -26,7 +26,15 @@ public class Hotel extends Location {
     }
 
     public Rank getRank() {
-        return rank;
+        Rank rank_test;
+        if (this.pricePerNight<100 ){
+            rank_test=Rank.LOW;
+        }else if( this.pricePerNight<200){
+            rank_test=Rank.MEDIUM;
+        } else  {
+            rank_test=Rank.HIGH;
+        }
+        return rank_test;
     }
 
     public int getPricePerNight() {

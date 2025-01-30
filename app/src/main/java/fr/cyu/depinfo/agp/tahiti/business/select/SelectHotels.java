@@ -3,16 +3,13 @@ package fr.cyu.depinfo.agp.tahiti.business.select;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Hotel;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Position;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Site;
-import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectHotels {
-    private HotelDAOInterface hotelDAO;
 
-    public List<Hotel> selectHotels(List<Site> activities,List<Hotel> hotels,int prix, int nbHotels, int comfort, int duration) {
+    public List<Hotel> selectHotels(List<Site> activities, List<Hotel> hotels, int prix, int nbHotels, int comfort, int duration) {
         double prixAct = 0;
         System.out.println(activities);
         for (Site activity : activities) {

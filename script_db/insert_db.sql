@@ -12,13 +12,6 @@ CREATE TABLE island (
                         name VARCHAR(255) NOT NULL
 );
 
-DO $$
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rank_enum') THEN
-CREATE TYPE rank_enum AS ENUM ('LOW', 'MEDIUM', 'HIGH');
-END IF;
-END $$;
-
 CREATE TABLE hotel (
                        id SERIAL PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
@@ -29,7 +22,6 @@ CREATE TABLE hotel (
                        rating REAL,
                        address VARCHAR(255) NOT NULL,
                        island_id INT,
-                       rank rank_enum DEFAULT 'MEDIUM',
                        FOREIGN KEY (island_id) REFERENCES Island(id) ON DELETE SET NULL
 );
 
