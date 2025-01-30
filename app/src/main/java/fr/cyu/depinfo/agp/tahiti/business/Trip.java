@@ -12,6 +12,13 @@ public class Trip {
     public Trip(Location departure, Location destination) {
         this.departure = departure;
         this.destination = destination;
+        if(departure.getIslandId() != destination.getIslandId()) {
+            this.transportMode= new Transport("Boat",0,14);
+        } else if (departure.getIslandId()==destination.getIslandId() && destination.distanceFrom(destination)<1) {
+            this.transportMode= new Transport("Feet",0,1);
+        }else{
+            this.transportMode= new Transport("Bus",0,10);
+        }
     }
 
     public int travelDistance() {

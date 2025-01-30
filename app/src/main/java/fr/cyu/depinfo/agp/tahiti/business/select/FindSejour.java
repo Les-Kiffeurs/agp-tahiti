@@ -178,6 +178,8 @@ public class FindSejour {
             sejour.addExcursion(excursion);
         }
 
+
+        sejour.setPrice(sejour.calculatePrice());
         return sejour;
     }
 

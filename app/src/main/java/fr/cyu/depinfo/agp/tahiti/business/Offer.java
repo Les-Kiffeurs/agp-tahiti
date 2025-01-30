@@ -59,4 +59,16 @@ public class Offer {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public double calculatePrice() {
+        double total = 0.0;
+        for (Excursion excursion : this.getExcursions().values()) {
+            for(Trip trip : excursion.getTrips()){
+                 double distance = trip.getDeparture().distanceFrom(trip.getDestination());
+                 double pricePerKM = trip.getTransportMode().getPricePerKm();
+                 total += distance * pricePerKM;
+            }
+        }
+        return total;
+    }
 }

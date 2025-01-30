@@ -67,4 +67,8 @@ public class Excursion {
     public void setTrips(List<Trip> trips) {
         this.trips = trips;
     }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
 }
