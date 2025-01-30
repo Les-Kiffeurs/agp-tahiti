@@ -4,23 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="bdeAPI" class="fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI">
-        <property name="luceneFacade" ref="luceneFacade" />
-        <property name="queryBuilder" ref="queryBuilder" />
-    </bean>
 
-    <bean id="luceneFacade" class="fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.LuceneFacade">
-        <property name="indexHandler" ref="luceneIndex" />
-        <property name="searchHandler" ref="luceneSearch" />
-    </bean>
-
-    <bean id="luceneIndex" class="fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.IndexHandler">
-    </bean>
-
-    <bean id="luceneSearch" class="fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.SearchHandler">
-    </bean>
-
-    <bean id="queryBuilder" class="fr.cyu.depinfo.agp.tahiti.persistence.bde.QueryBuilder">
-    </bean>
 
 </beans>

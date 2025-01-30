@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public interface SimpleSearchDAOInterface {
+public interface SimpleSearchDAOInterface<T> {
 
-    List<Location> searchByPrice(int minPrice, int maxPrice);
+    List<T> searchByPrice(int minPrice, int maxPrice);
 
-    List<Location> searchByConfort(int confortLevel);
+    List<T> searchByConfort(int confortLevel);
 
-    List<Location> searchByIsland(String island);
+    List<T> searchByIsland(String island);
 }
