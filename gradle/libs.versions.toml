@@ -3,7 +3,6 @@
 
 [versions]
 lucene = "10.1.0"
-postgres = "42.7.5"
 spring-framework = "6.2.2"
 lombok = "1.18.36"
 jakarta = "10.0.0"
@@ -11,11 +10,11 @@ mockito = "5.15.2"
 hibernate = "6.6.5.Final"
 log4j = "2.12.4"
 jackson = "2.18.2"
+jstl = "3.0.0"
 
 [libraries]
 lucene-core = { group = "org.apache.lucene", name = "lucene-core",  version.ref = "lucene" }
 lucene-queryparser = { group = "org.apache.lucene", name = "lucene-queryparser",  version.ref = "lucene" }
-postgres = { group = "org.postgresql", name = "postgresql", version.ref = "postgres" }
 spring-aop = { group = "org.springframework", name = "spring-aop", version.ref = "spring-framework"}
 spring-aspects = { group = "org.springframework", name = "spring-aspects", version.ref = "spring-framework"}
 spring-beans = { group = "org.springframework", name = "spring-beans", version.ref = "spring-framework"}
@@ -48,6 +47,7 @@ log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.
 log4j-api = { group = "org.apache.logging.log4j", name = "log4j-api", version.ref = "log4j" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 jackson-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jackson" }
+jstl = { group = "org.glassfish.web", name = "jakarta.servlet.jsp.jstl", version.ref = "jstl" }
 
 [bundles]
 spring = ["spring-aop",
