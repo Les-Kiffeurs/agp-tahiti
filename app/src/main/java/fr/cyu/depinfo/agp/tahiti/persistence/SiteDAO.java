@@ -6,6 +6,7 @@ import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
