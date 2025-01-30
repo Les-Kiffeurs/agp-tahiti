@@ -134,29 +134,6 @@ public class FindSejourTest {
         // (the chance of 0 each day is tiny, but possible).
         Assertions.assertTrue(totalTrips >= 1,
                 "We expect at least 1 trip across 4 days (unless random chance was extremely unlucky).");
-        System.out.println("Offer Details:");
-        System.out.println("  Destination: " + offer.getDestination().getIslandName());
-        offer.setPrice(offer.calculatePrice());
-        System.out.println("Offer total price " + offer.getPrice());
-        System.out.println("  Excursions:");
-
-        for (Map.Entry<Date, Excursion> entry: offer.getExcursions().entrySet()) {
-            Date date = entry.getKey();
-            Excursion excursion = entry.getValue();
-            System.out.println("    Date: " + date);
-            System.out.println("      Departure: " + excursion.getDeparture().getName());
-            System.out.println("      Destination: " + excursion.getDestination().getName());
-
-            System.out.println("      Trips:");
-
-            for (Trip trip: excursion.getSites()) {
-                System.out.println("Price: " + trip.getPrice()+ " Distance: "+ trip.travelDistance());
-                System.out.println("Transport mode: " + trip.getTransportMode().toString());
-                System.out.println("Departure        - " + trip.getDeparture().getName());
-                System.out.println("Destination      - " + trip.getDestination().getName());
-            }
-        }
-
     }
 
 

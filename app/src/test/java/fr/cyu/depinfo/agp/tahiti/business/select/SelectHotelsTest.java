@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 /**
  * Test class for SelectHotels.
  */
@@ -105,7 +107,7 @@ public class SelectHotelsTest {
 
         // 5) Assertions and logs
         //    Check that we don't get a null or empty list
-        Assertions.assertNotNull(chosen, "Returned list should not be null");
+        assertNotNull(chosen, "Returned list should not be null");
 
         // We might expect that "Hotel Luxury" is filtered out
         // if its price (120) is above daily budget
@@ -113,12 +115,6 @@ public class SelectHotelsTest {
         // So 120 < 184 => Actually it's still included based on price filter
         // Then the KMeans/1NN might or might not keep it.
         // We'll see what the code does.
-
-        System.out.println("=== Hotels Returned by selectHotels ===");
-        for (Hotel h : chosen) {
-            System.out.println("Chosen Hotel: " + h.getName() + ", Price: " + h.getPricePerNight()
-                    + ", Position: " + h.getPosition());
-        }
 
         // A basic assertion: we expect at least one or more hotels returned.
         Assertions.assertFalse(chosen.isEmpty(), "At least one hotel should be returned.");

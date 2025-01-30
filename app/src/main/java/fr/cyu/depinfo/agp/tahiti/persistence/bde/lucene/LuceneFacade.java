@@ -26,7 +26,6 @@ public class LuceneFacade {
         }
 
         indexHandler.createIndex(destPath);
-        System.out.println(indexHandler.getIndexPath());
         searchHandler.setIndexPath(indexHandler.getIndexPath());
         indexHandler.addFilesToIndex(srcFilePath);
         indexHandler.closeWriter();

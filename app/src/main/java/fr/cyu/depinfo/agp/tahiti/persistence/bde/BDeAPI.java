@@ -23,7 +23,6 @@ public class BDeAPI {
         try (FileWriter fw = new FileWriter(path + "/" + key + ".txt")) {
             fw.write(text);
         } catch (IOException e) {
-            System.out.println("Error writing to file");
             e.printStackTrace();
         }
     }
