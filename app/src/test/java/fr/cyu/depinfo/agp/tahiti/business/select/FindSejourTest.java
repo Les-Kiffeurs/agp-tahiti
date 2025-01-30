@@ -51,7 +51,7 @@ public class FindSejourTest {
                 "Activity",
                 69,
                 2,
-                new Position(-17.5324608,-149.5677151)
+                new Position(-17.5717472,-149.6133526)
         );
         Location temple = new Site(3,
                 "Tahiti Limousine - Service Vip",
@@ -61,7 +61,7 @@ public class FindSejourTest {
                 "Activity",
                 69,
                 2,
-                new Position(-17.5324608,-149.5677151)
+                new Position(-17.6400771,-149.6088438)
         );
         Location snorkeling =new Site(4,
                 "Centre Equestre L'Eperon",
@@ -71,7 +71,7 @@ public class FindSejourTest {
                 "Activity",
                 69,
                 2,
-                new Position(-17.5324608,-149.5677151)
+                new Position(-17.7617237,-149.5038687)
         );
 
         // Put them in a list
@@ -131,11 +131,13 @@ public class FindSejourTest {
 
         // Because comfort = 3, nbActMaxParJour is random from {0,1,2,3}
         // but let's just ensure we have at least 1 trip across all 4 days
-        // (the chance of 0 each day is extremely small, but possible).
+        // (the chance of 0 each day is tiny, but possible).
         Assertions.assertTrue(totalTrips >= 1,
                 "We expect at least 1 trip across 4 days (unless random chance was extremely unlucky).");
         System.out.println("Offer Details:");
         System.out.println("  Destination: " + offer.getDestination().getIslandName());
+        offer.setPrice(offer.calculatePrice());
+        System.out.println("Offer total price " + offer.getPrice());
         System.out.println("  Excursions:");
 
         for (Map.Entry<Date, Excursion> entry: offer.getExcursions().entrySet()) {
@@ -143,14 +145,18 @@ public class FindSejourTest {
             Excursion excursion = entry.getValue();
             System.out.println("    Date: " + date);
             System.out.println("      Departure: " + excursion.getDeparture().getName());
+            System.out.println("      Destination: " + excursion.getDestination().getName());
+
             System.out.println("      Trips:");
 
             for (Trip trip: excursion.getSites()) {
-                System.out.println("PRice of the trip");
+                System.out.println("Price: " + trip.price()+ " Distance: "+ trip.getDistance());
+                System.out.println("Transport mode: " + trip.getTransportMode().toString());
                 System.out.println("Departure        - " + trip.getDeparture().getName());
                 System.out.println("Destination      - " + trip.getDestination().getName());
             }
         }
+
     }
 
 
