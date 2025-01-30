@@ -2,12 +2,21 @@ package fr.cyu.depinfo.agp.tahiti.business.select;
 
 import fr.cyu.depinfo.agp.tahiti.business.locations.Position;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Site;
+import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
+import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
+import fr.cyu.depinfo.agp.tahiti.persistence.SiteDAO;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectAct {
+
+    @Autowired
+    private SiteDAOInterface siteDAO;
+
     public int nbActMax(int duration, int comfort) {
         double[][] probability_matrix = {
                 {0.01, 0.05, 0.47, 0.47},
@@ -39,7 +48,7 @@ public class SelectAct {
     private Site getRandomActivity() {
         // Return some placeholder Site with fake data
         return new Site(
-                "DummyActivity",
+                1,
                 "Fake description",
                 "Fake address",
                 1,
@@ -56,7 +65,7 @@ public class SelectAct {
         // For testing, return a small list of dummy Sites
         List<Site> dummyList = new ArrayList<>();
         dummyList.add(new Site(
-                "DummyActivity1",
+                2,
                 "Fake desc 1",
                 "Fake address 1",
                 1,
@@ -67,7 +76,7 @@ public class SelectAct {
                 new Position(-17.5324608, -149.5677151)
         ));
         dummyList.add(new Site(
-                "DummyActivity2",
+                3,
                 "Fake desc 2",
                 "Fake address 2",
                 1,
