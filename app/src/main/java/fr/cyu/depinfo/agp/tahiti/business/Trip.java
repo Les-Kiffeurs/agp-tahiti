@@ -35,7 +35,7 @@ public class Trip {
 
     public double price() {
         double distance = (travelDistance());
-        return distance * transportMode.getPricePerKm();
+        return distance/1000 * transportMode.getPricePerKm();
     }
 
     public Location getDeparture() {

@@ -15,6 +15,7 @@ class TripTest {
         Transport fiveKpHTransportMode = new Transport("5KpHTransport", 0, 5/3.6f);
 
         Trip t = new Trip(h1, h2).setTransportMode(fiveKpHTransportMode);
+        System.out.println("Temps : " + t.duration().getSeconds());
         assertTrue(t.duration().getSeconds() >= 7200 - 100 && t.duration().getSeconds() <= 7200 + 100);
     }
 
@@ -25,6 +26,6 @@ class TripTest {
         Transport fiveEpKmTransportMode = new Transport("5EpKmTransport", 1, 5/3.6f);
 
         Trip t = new Trip(h1, h2).setTransportMode(fiveEpKmTransportMode);
-        assertEquals(10, t.price());
+        assertEquals(10, t.price(), 0.001);
     }
 }
