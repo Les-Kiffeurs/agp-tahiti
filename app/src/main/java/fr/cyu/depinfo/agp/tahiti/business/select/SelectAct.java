@@ -52,7 +52,7 @@ public class SelectAct {
     }
 
     // a suppr quand connexion db
-    private List<Site> getActivities(List<String> keyword) {
+    List<Site> getActivities(List<String> keyword) {
         // For testing, return a small list of dummy Sites
         List<Site> dummyList = new ArrayList<>();
         dummyList.add(new Site(
