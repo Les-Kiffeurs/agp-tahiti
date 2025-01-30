@@ -64,9 +64,7 @@ public class Offer {
         double total = 0.0;
         for (Excursion excursion : this.getExcursions().values()) {
             for(Trip trip : excursion.getTrips()){
-                 double distance = trip.getDistance();
-                 double pricePerKM = trip.getTransportMode().getPricePerKm();
-                 total += distance/1000 * pricePerKM;
+                total += trip.getPrice();
             }
         }
         return total;

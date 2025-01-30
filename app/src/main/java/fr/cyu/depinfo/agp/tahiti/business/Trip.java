@@ -9,6 +9,7 @@ public class Trip {
     private final Location departure;
     private final Location destination;
     private double distance;
+    private double price;
 
     public Trip(Location departure, Location destination) {
         this.departure = departure;
@@ -20,7 +21,8 @@ public class Trip {
         }else{
             this.transportMode= new Transport("Bus",0.05f,10);
         }
-        this.distance = calculateDistance();
+        this.distance = travelDistance();
+        this.price = distance/1000 * transportMode.getPricePerKm();
     }
 
     public double travelDistance() {
@@ -33,9 +35,13 @@ public class Trip {
         return Duration.ofSeconds((long) (distance / speed));
     }
 
-    public double price() {
-        double distance = (travelDistance());
-        return distance/1000 * transportMode.getPricePerKm();
+    public double getPrice() {
+        return price;
+    }
+
+    public Trip setPrice(double price) {
+        this.price = price;
+        return this;
     }
 
     public Location getDeparture() {
@@ -53,10 +59,6 @@ public class Trip {
     public Trip setTransportMode(Transport transportMode) {
         this.transportMode = transportMode;
         return this;
-    }
-    public double calculateDistance(){
-        setDistance(departure.distanceFrom(destination));
-        return departure.distanceFrom(destination);
     }
 
     public double getDistance() {
