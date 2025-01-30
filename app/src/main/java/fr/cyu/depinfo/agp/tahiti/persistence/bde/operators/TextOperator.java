@@ -2,13 +2,19 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde.operators;
 
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.lucene.LuceneFacade;
+import lombok.Getter;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.util.*;
 
-public class TextOperator extends AbstractFinalOperator{
+public class TextOperator extends AbstractFinalOperator {
+    @Autowired
+    @Getter
+    private LuceneFacade luceneFacade;
 
     private TopDocs topDocs;
     private List<Map<String, Object>> docs;
@@ -17,6 +23,7 @@ public class TextOperator extends AbstractFinalOperator{
 
     public TextOperator(String query, String keyColumnName) {
         super(query);
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
         this.keyColumnName = keyColumnName;
     }
 
@@ -27,7 +34,6 @@ public class TextOperator extends AbstractFinalOperator{
 
     @Override
     public void executeQuery() {
-        LuceneFacade luceneFacade = BDeAPI.getInstance().getLuceneFacade();
         topDocs = luceneFacade.search(getQuery());
 
         docs = new ArrayList<>();
@@ -51,6 +57,4 @@ public class TextOperator extends AbstractFinalOperator{
         }
         return null;
     }
-
-
 }
