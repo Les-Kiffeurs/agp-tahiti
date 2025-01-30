@@ -11,16 +11,22 @@ import java.util.List;
 public class Excursion {
     public static final int MAX_TRIPS = 3;
 
-    private final Date date;
-    private final Hotel departure;
-    private final Hotel destination;
-    private final List<Trip> trips = new ArrayList<>();
+    private Date date;
+    private Hotel departure;
+    private Hotel destination;
+    private List<Trip> trips = new ArrayList<>();
 
     public Excursion(Date date, Hotel departure, Hotel destination) {
         this.date = date;
         this.departure = departure;
         this.destination = destination;
     }
+
+    public Excursion(Date date, Hotel departure){
+        this.date = date;
+        this.departure = departure;
+        this.destination = null;
+    };
 
     public Date getDate() {
         return date;
@@ -44,5 +50,21 @@ public class Excursion {
         }
         trips.add(trip);
         return this;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setDeparture(Hotel departure) {
+        this.departure = departure;
+    }
+
+    public void setDestination(Hotel destination) {
+        this.destination = destination;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 }

@@ -33,5 +33,11 @@ public class Hotel extends Location {
         return pricePerNight;
     }
 
+    public String toString() {
+        return "Position{" +
+                "latitude=" + position.getLongitude() +
+                ", longitude=" + position.getLatitude() +
+                '}';
+    }
 
 }
