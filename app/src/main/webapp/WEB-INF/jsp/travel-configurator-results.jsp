@@ -10,6 +10,9 @@
 
 <p>
     <strong>Results:</strong>
+    <c:forEach items="${sites}" var="site">
+        <a href="/sites?id=${site.id}">${site.name}</a>
+    </c:forEach>
     <br>
 </p>
 <a href="/">Back to Main Menu</a>
