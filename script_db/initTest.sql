@@ -29,18 +29,26 @@ CREATE TABLE hotel (
                        rank rank_enum DEFAULT 'MEDIUM'
 );
 
+
 -- Création de la table Activity
 CREATE TABLE activity (
                           id INT PRIMARY KEY,
-                          name VARCHAR(255) NOT NULL
-);
+                          name VARCHAR(255) NOT NULL,
+                          price INT NOT NULL,
+                          latitude DOUBLE PRECISION NOT NULL,
+                          longitude DOUBLE PRECISION NOT NULL,
+                          intensity INT,
+                          rating REAL CHECK (rating >= 0 AND rating <= 5),
+                          address VARCHAR(255) NOT NULL,
+                          island_id INT,
+                          type VARCHAR(255) NOT NULL);
 
 
 -- Étape 4 : Insertion de données dans la table Activity
-INSERT INTO activity (id, name) VALUES
-                                    (1, 'SuperEscalade'),
-                                    (2, 'SuperPlongee'),
-                                    (3, 'SuperEscalade2');
+INSERT INTO activity (id, name, price, latitude, longitude, intensity, rating, address, island_id, type) VALUES
+                                    (1, 'SuperEscalade', 100, 25, -80, 5, 4.2, '???', 1, 'Activity'),
+                                    (2, 'SuperPlongee', 100, 25, -80, 5, 4.2, '???', 1, 'Activity'),
+                                    (3, 'SuperEscalade2', 100, 25, -80, 5, 4.2, '???', 1, 'Activity');
 
 
 -- Étape 5 : Insertion de données dans test_table
