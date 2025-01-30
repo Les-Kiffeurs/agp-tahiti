@@ -60,7 +60,8 @@ public class SelectActTest {
 
         // The getActivities(...) in your code returns 2 dummy activities by default.
         // We want to see if fillAct(...) gets called if nbActMax > 2
-        List<Site> selected = selectAct.SelectAct(prix, duration, comfort, keywords);
+        List<Site> activities = new ArrayList<>();
+        List<Site> selected = selectAct.SelectAct(activities, prix, duration, comfort);
 
         // The method returns either exactly the random number of activities
         // (and if that is >2, we see filler ones).
@@ -80,35 +81,27 @@ public class SelectActTest {
 
     @Test
     public void testSelectActWhenActivitiesAreMoreThanNbActMax() {
-        SelectAct selectAct = new SelectAct() {
-            // We override getActivities(...) to simulate a bigger list of default "activity" data
-            // so we can test the "activities.subList(0, nbActMax)" branch
-            @Override
-            protected List<Site> getActivities(List<String> keyword) {
-                List<Site> bigList = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
-                    bigList.add(new Site(
-                            i,
-                            "DummyActivity" + i,
-                            "Fake address " + i,
-                            1,
-                            4.5f,
-                            "Activity",
-                            0,
-                            1,
-                            new Position(-17.5324608 + i, -149.5677151 - i)
-                    ));
-                }
-                return bigList;
-            }
-        };
+        SelectAct selectAct = new SelectAct();
+        List<Site> activities = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            activities.add(new Site(
+                    i,
+                    "DummyActivity" + i,
+                    "Fake address " + i,
+                    1,
+                    4.5f,
+                    "Activity",
+                    0,
+                    1,
+                    new Position(-17.5324608 + i, -149.5677151 - i)
+            ));
+        }
 
         int comfort = 1; // This row might often yield a smaller nbActMax
         int prix = 300;
         int duration = 2;
         List<String> keywords = new ArrayList<>();
-
-        List<Site> selected = selectAct.SelectAct(prix, duration, comfort, keywords);
+        List<Site> selected = selectAct.SelectAct(activities, prix, duration, comfort);
         Assertions.assertNotNull(selected, "Activity list should not be null");
         Assertions.assertFalse(selected.isEmpty(), "Should return at least one activity");
 

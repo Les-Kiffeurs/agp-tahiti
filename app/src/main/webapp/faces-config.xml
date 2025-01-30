@@ -13,7 +13,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/WEB-INF/jsp/travel-configurator.jsp</from-view-id>
+        <from-view-id>/WEB-INF/jsp/search/complex-search.jsp</from-view-id>
         <navigation-case>
             <from-outcome>complex-search-results</from-outcome>
             <to-view-id>/WEB-INF/jsp/travel-configurator-results.jsp</to-view-id>

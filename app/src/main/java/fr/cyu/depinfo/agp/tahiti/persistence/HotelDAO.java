@@ -1,7 +1,6 @@
 package fr.cyu.depinfo.agp.tahiti.persistence;
 
 import fr.cyu.depinfo.agp.tahiti.business.locations.Hotel;
-import fr.cyu.depinfo.agp.tahiti.business.locations.Location;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Position;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Rank;
 import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
@@ -9,9 +8,7 @@ import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import fr.cyu.depinfo.agp.tahiti.persistence.bde.ExecutionPlan;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +31,13 @@ public class HotelDAO implements HotelDAOInterface {
     @Override
     public List<Hotel> searchByPrice(int minPrice, int maxPrice) {
         String query = String.format("SELECT * FROM hotel WHERE price_per_night >= %d AND price_per_night <= %d", minPrice, maxPrice);
+
+        return executeQuery(query);
+    }
+
+    @Override
+    public List<Hotel> getAllHotels() {
+        String query = String.format("SELECT * FROM hotel");
 
         return executeQuery(query);
     }
