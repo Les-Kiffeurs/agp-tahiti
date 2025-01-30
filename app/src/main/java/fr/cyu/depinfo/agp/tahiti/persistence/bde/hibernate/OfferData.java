@@ -2,10 +2,10 @@ package fr.cyu.depinfo.agp.tahiti.persistence.bde.hibernate;
 
 import fr.cyu.depinfo.agp.tahiti.business.Excursion;
 import fr.cyu.depinfo.agp.tahiti.business.locations.Destination;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
