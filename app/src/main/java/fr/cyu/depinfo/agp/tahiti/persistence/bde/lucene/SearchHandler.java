@@ -37,7 +37,7 @@ public class SearchHandler {
             Analyzer analyseur = new StandardAnalyzer();
 
             QueryParser qp = new QueryParser("contenu", analyseur);
-            Query req = qp.parse(query);
+            Query req = qp.parse(finalQuery);
 
             resultats = searcher.search(req, MAX_RESULTS);
         } catch (IOException | ParseException e) {
@@ -74,7 +74,7 @@ public class SearchHandler {
     }
 
     public String parseQuery(String query) {
-        String finalQuery = query.replaceAll(" ", "OR");
+        String finalQuery = query.replaceAll(" ", " OR ");
         return finalQuery;
     }
 

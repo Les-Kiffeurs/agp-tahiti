@@ -33,13 +33,14 @@ public class SiteDAO implements SiteDAOInterface {
     public List<Site> searchByKeyword(String keywords) {
         String query = String.format("SELECT * FROM site with %s", keywords);
 
-
         return executeQuery(query);
     }
 
     @Override
     public List<Site> searchByType(String type) {
-        return List.of();
+        String query = String.format("SELECT * FROM site WHERE type = %s", type);
+
+        return executeQuery(query);
     }
 
     @Override
@@ -76,6 +77,7 @@ public class SiteDAO implements SiteDAOInterface {
 
     private List<Site> executeQuery(String query) {
         ExecutionPlan executionPlan = bdeAPI.query(query);
+        executionPlan.executeQuery();
         return createListResult(executionPlan);
     }
 }
