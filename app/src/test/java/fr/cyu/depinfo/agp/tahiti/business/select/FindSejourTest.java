@@ -27,7 +27,6 @@ public class FindSejourTest {
                 1,
                 9.0f,
                 new Position(-17.7617237,-149.5038687),
-                Rank.LOW,
                 "black sand beach",
                 149
         );

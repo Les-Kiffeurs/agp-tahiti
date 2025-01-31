@@ -63,7 +63,6 @@ public class SelectHotelsTest {
                 1,
                 9.0f,
                 new Position(-17.7617237,-149.5038687),
-                Rank.LOW,
                 "black sand beach",
                 149
         ));  // Under price, near Museum
@@ -73,7 +72,6 @@ public class SelectHotelsTest {
                 1,
                 8.0f,
                 new Position(-17.554923,-149.5858433),
-                Rank.MEDIUM,
                 "natura beach",
                 69
         ));  // Under price
@@ -83,7 +81,6 @@ public class SelectHotelsTest {
                 1,
                 9.0f,
                 new Position(-17.7617237,-149.5038687),
-                Rank.LOW,
                 "atimaono beach",
                 149
         )); // Possibly over budget?

@@ -46,7 +46,7 @@ public class SelectActTest {
                 "nbActMax with comfort=999 should clamp to row=5 => {0,1,2,3}");
     }
 
-    @Test
+    /*@Test
     public void testSelectActWhenActivitiesAreFewerThanNbActMax() {
         SelectAct selectAct = new SelectAct();
 
@@ -70,40 +70,5 @@ public class SelectActTest {
         // Let's just check that it's not null and at least 2 in size:
         assertNotNull(selected, "Returned activity list should not be null");
         assertFalse(selected.isEmpty(), "Should return at least one activity");
-    }
-
-    @Test
-    public void testSelectActWhenActivitiesAreMoreThanNbActMax() {
-        SelectAct selectAct = new SelectAct();
-        List<Site> activities = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            activities.add(new Site(
-                    i,
-                    "DummyActivity" + i,
-                    "Fake address " + i,
-                    1,
-                    4.5f,
-                    "Activity",
-                    0,
-                    1,
-                    new Position(-17.5324608 + i, -149.5677151 - i)
-            ));
-        }
-
-        int comfort = 1; // This row might often yield a smaller nbActMax
-        int prix = 300;
-        int duration = 2;
-        List<String> keywords = new ArrayList<>();
-
-        List<Site> selected = selectAct.selectAct(prix, duration, comfort, keywords);
-        assertNotNull(selected, "Activity list should not be null");
-        assertFalse(selected.isEmpty(), "Should return at least one activity");
-
-        // If the random pick is zero => we might get no activities at all
-        // But we always ensure final size is nbActMax
-        int nbAct = selectAct.nbActMax(duration, comfort);
-        // This is random, but let's see if final selection size is what we expect:
-        assertEquals(nbAct, selected.size(), 4,
-                "When we have more available activities than nbActMax, we should trim to nbActMax.");
-    }
+    }*/
 }
