@@ -3,11 +3,9 @@ package fr.cyu.depinfo.agp.tahiti.business.locations;
 public class Hotel extends Location {
     private int pricePerNight;
     private String beach;
-    final Rank rank;
 
-    public Hotel(int id, String name, String address, int islandId, float rating, Position position, Rank rank, String beach, int pricePerNight) {
+    public Hotel(int id, String name, String address, int islandId, float rating, Position position, String beach, int pricePerNight) {
         super(id, name, address, islandId, rating, position);
-        this.rank = rank;
         this.beach = beach;
         this.pricePerNight = pricePerNight;
     }
@@ -46,7 +44,6 @@ public class Hotel extends Location {
         return "Hotel{" +
                 "pricePerNight=" + pricePerNight +
                 ", beach='" + beach + '\'' +
-                ", rank=" + rank +
                 "} " + super.toString();
     }
 }

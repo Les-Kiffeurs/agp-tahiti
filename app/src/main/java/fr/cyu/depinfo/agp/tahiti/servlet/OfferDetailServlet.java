@@ -5,14 +5,19 @@ import fr.cyu.depinfo.agp.tahiti.business.Offer;
 import fr.cyu.depinfo.agp.tahiti.business.Trip;
 import fr.cyu.depinfo.agp.tahiti.business.locations.*;
 import fr.cyu.depinfo.agp.tahiti.business.select.*;
+import fr.cyu.depinfo.agp.tahiti.dao.HotelDAOInterface;
+import fr.cyu.depinfo.agp.tahiti.dao.SiteDAOInterface;
 import fr.cyu.depinfo.agp.tahiti.persistence.HotelDAO;
 import fr.cyu.depinfo.agp.tahiti.persistence.SiteDAO;
+import fr.cyu.depinfo.agp.tahiti.persistence.bde.BDeAPI;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -27,9 +32,9 @@ public class OfferDetailServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
 
         String keywords = URLDecoder.decode(request.getParameter("keywords"), StandardCharsets.UTF_8);
-        System.out.println("keywords: " + keywords);
         int numberOfHotels = Integer.parseInt(request.getParameter("number_of_hotels"));
         int comfortLevel = Integer.parseInt(request.getParameter("comfort_level"));
         int minPrice = Integer.parseInt(request.getParameter("min_price"));
@@ -41,15 +46,18 @@ public class OfferDetailServlet extends HttpServlet {
         LocalDate departureDate = LocalDate.parse(departureDateData);
         int daysBetween = (int) ChronoUnit.DAYS.between(arrivalDate, departureDate);
 
-        SiteDAO siteDAO = new SiteDAO();
-        HotelDAO hotelDAO = new HotelDAO();
-        ServletContext context = getServletContext();
+        WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 
+        SiteDAOInterface siteDAO = wac.getBean(SiteDAO.class);
+        HotelDAOInterface hotelDAO = wac.getBean(HotelDAO.class);
+
+        ServletContext context = getServletContext();
         String indexPath = context.getRealPath("/WEB-INF/index");
         String descriptionPath = context.getRealPath("/WEB-INF/descriptions");
 
-        siteDAO.getBdeAPI().setTextSearchInfo("site", "id", descriptionPath);
-        siteDAO.getBdeAPI().createTextIndex(indexPath);
+        BDeAPI bDeAPI = wac.getBean(BDeAPI.class);
+        bDeAPI.setTextSearchInfo("site", "id", descriptionPath);
+        bDeAPI.createTextIndex(indexPath);
 
         SelectAct selectAct = new SelectAct();
         SelectHotels selectHotel = new SelectHotels();

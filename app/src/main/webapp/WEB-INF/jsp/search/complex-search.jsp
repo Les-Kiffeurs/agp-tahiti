@@ -43,13 +43,6 @@
 
             <button type="submit">Submit</button>
         </form>
-
-        <section class="search-results">
-            <h2>Results</h2>
-            <%
-
-            %>
-        </section>
     </main>
 
     <footer>

@@ -80,11 +80,10 @@ public class HotelDAO implements HotelDAOInterface {
             int islandId = (int) result.get("island_id");
             float rating = (Float) result.get("rating");
             String address = (String) result.get("address");
-            String rank = (String) result.get("rank");
 
 
 
-            Hotel hotel = new Hotel(id,name,address,islandId,rating,pos, Rank.valueOf(rank),beach,pricePerNight);
+            Hotel hotel = new Hotel(id,name,address,islandId,rating,pos,beach,pricePerNight);
 
             results.add(hotel);
         }

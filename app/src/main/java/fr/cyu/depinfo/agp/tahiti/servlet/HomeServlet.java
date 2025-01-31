@@ -8,10 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/advanced-search")
-public class ComplexSearchServlet extends HttpServlet {
+@WebServlet("")
+public class HomeServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/jsp/search/complex-search.jsp").forward(request, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
 }

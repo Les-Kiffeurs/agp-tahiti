@@ -34,6 +34,14 @@ p {
     gap: 15px;
 }
 
+.menu-horizontal {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
 .menu-item {
     display: inline-block;
     padding: 15px 30px;

@@ -1,18 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mathi
-  Date: 27/01/2025
-  Time: 13:00
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu - Tahiti Trip Planner</title>
-    <link rel="stylesheet" href="../../resources/css/main.css">
-    <link rel="icon" type="image/x-icon" href="../../resources/img/favicon.ico">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
 </head>
 <body>
 <div class="container">
@@ -23,15 +19,21 @@
 
     <main>
         <div class="menu">
-            <a href="search/complex-search.jsp" class="menu-item">
+            <a href="advanced-search" class="menu-item">
                 <h2>Travel Planner</h2>
                 <p>Customize your trip by choosing hotels, comfort levels, and price range.</p>
             </a>
 
-            <a href="simple-search.jsp" class="menu-item">
-                <h2>Simple Search</h2>
-                <p>Find hotels or activities quickly by typing in a keyword.</p>
-            </a>
+            <div class="menu-horizontal">
+                <a href="search-hotels" class="menu-item">
+                    <h2>Search Hotels</h2>
+                    <p>Find hotels by price range and comfort.</p>
+                </a>
+                <a href="search-activities" class="menu-item">
+                    <h2>Search Activities</h2>
+                    <p>Find activities by keyword.</p>
+                </a>
+            </div>
         </div>
     </main>
 

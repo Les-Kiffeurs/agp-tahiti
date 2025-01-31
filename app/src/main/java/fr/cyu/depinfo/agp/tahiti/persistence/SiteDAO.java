@@ -14,11 +14,16 @@ import java.util.Map;
 
 @Component
 public class SiteDAO implements SiteDAOInterface {
-    @Autowired
     private BDeAPI bdeAPI;
 
     public BDeAPI getBdeAPI() {
         return bdeAPI;
+    }
+
+    @Autowired
+    public SiteDAO setBdeAPI(BDeAPI bdeAPI) {
+        this.bdeAPI = bdeAPI;
+        return this;
     }
 
     @Override
@@ -104,7 +109,6 @@ public class SiteDAO implements SiteDAOInterface {
     }
 
     private List<Site> executeQuery(String query) {
-        System.out.println(query);
         ExecutionPlan executionPlan = bdeAPI.query(query);
         executionPlan.executeQuery();
         return createListResult(executionPlan);
